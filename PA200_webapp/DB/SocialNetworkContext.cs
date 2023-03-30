@@ -29,4 +29,5 @@ public class SocialNetworkContext : DbContext
             .HasIndex(u => u.Email)
             .IsUnique();
     }
+    
 }

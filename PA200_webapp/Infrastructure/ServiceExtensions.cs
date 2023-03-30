@@ -1,3 +1,5 @@
+using PA200_webapp.Repository;
+
 namespace PA200_webapp.Infrastructure;
 
 public static class ServiceExtensions
@@ -6,5 +8,8 @@ public static class ServiceExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
-    
+
+    public static void ConfigureServices(this IServiceCollection services)
+    {
+    }
 }
