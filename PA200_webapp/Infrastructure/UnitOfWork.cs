@@ -114,7 +114,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public void Save()
     {
-        throw new NotImplementedException();
+        context.SaveChanges();
     }
 
     private bool disposed = false;

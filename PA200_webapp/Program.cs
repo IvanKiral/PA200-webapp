@@ -12,6 +12,7 @@ builder.Services.AddDbContext<SocialNetworkContext>(options =>
 
 builder.Services.ConfigureUnitOfWork();
 builder.Services.ConfigureServices();
+builder.Services.ConfigureMapper();
 builder.Services.AddScoped<IAuthService, JWTService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
