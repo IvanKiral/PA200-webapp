@@ -21,7 +21,12 @@ public class SocialNetworkContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("public");
         modelBuilder.Entity<Like>()
             .HasKey(l => new { l.UserId, l.PostId });
+        
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
     }
 }

@@ -31,4 +31,8 @@ public class User
     public IEnumerable<Like> Likes { get; set; }
     
     public IEnumerable<Post> Posts { get; set; }
+
+    public IEnumerable<UserClass> UserClasses { get; set; }
+    
+    public IEnumerable<UserSubject> UserSubjects { get; set; }
 }

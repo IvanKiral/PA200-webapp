@@ -6,7 +6,7 @@ public class UserSubject
     public int UserId { get; set; }
     public User User { get; set; }
     public int SubjectId { get; set; }
-    public Class Subject { get; set; }
+    public Subject Subject { get; set; }
     public DateTime From { get; set; }
     public DateTime To { get; set; }
 }

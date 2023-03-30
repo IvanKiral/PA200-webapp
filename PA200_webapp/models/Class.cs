@@ -13,4 +13,6 @@ public class Class
     
     public Wall Wall { get; set; }
     
+    public IEnumerable<UserClass> UserClasses { get; set; }
+
 }

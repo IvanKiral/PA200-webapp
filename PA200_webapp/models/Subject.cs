@@ -12,4 +12,6 @@ public class Subject
     public string Name { get; set; }
     
     public Wall Wall { get; set; }
+
+    public IEnumerable<UserSubject> UserSubjects { get; set; }
 }

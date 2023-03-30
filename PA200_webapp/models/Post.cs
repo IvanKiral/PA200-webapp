@@ -12,8 +12,13 @@ public class Post
 
     public bool IsDeleted { get; set; } = false;
 
+    public int UserId { get; set; }
+    public User User { get; set; }
+
     public int WallId { get; set; }
     public Wall Wall { get; set; }
+    
+    public DateTime Created { get; set; }
 
     public IEnumerable<Comment> Comments { get; set; }
 }

@@ -25,3 +25,4 @@ using (var scope = app.Services.CreateScope())
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+
