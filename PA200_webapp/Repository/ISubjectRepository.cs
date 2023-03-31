@@ -4,5 +4,5 @@ namespace PA200_webapp.Repository;
 
 public interface ISubjectRepository: IRepositoryBase<Subject>
 {
-    
+    public Subject createSubject(Subject newSubject);
 }

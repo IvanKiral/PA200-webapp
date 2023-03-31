@@ -9,5 +9,6 @@ public static class MapperCreator
         new(mc =>
         {
             mc.AddProfile<UserProfile>();
+            mc.AddProfile<AdminProfile>();
         });
 }

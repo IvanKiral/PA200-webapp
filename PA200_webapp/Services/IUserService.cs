@@ -6,6 +6,6 @@ namespace PA200_webapp.Services;
 
 public interface IUserService
 {
-    public void createUser(RegisterUserDTO model);
+    public void createUser(CreateUserDTO model);
     public User? authenticateUser(LoginUserDTO user);
 }

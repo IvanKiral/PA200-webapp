@@ -13,6 +13,7 @@ public static class ServiceExtensions
     public static void ConfigureServices(this IServiceCollection services)
     {
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAdminService, AdminService>();
     }
 
     public static void ConfigureMapper(this IServiceCollection services)
