@@ -14,10 +14,10 @@ public class SocialNetworkContext : DbContext
     public DbSet<Class> Classes { get; set; }
     public DbSet<Subject> Subjects { get; set; }
     public DbSet<Wall> Walls { get; set; }
-    public DbSet<Comment> Comments { get; set; }
     public DbSet<UserSubject> UserSubjects { get; set; }
     public DbSet<UserClass> UserClasses { get; set; }
     public DbSet<Like> Likes { get; set; }
+    public DbSet<School> Schools { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,6 +27,10 @@ public class SocialNetworkContext : DbContext
         
         modelBuilder.Entity<User>()
             .HasIndex(u => u.Email)
+            .IsUnique();
+
+        modelBuilder.Entity<School>()
+            .HasIndex(s => s.Name)
             .IsUnique();
     }
     

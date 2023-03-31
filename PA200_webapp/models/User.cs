@@ -6,6 +6,7 @@ namespace PA200_webapp.models;
 
 public enum UserRole
 {
+    Admin,
     Student,
     Teacher
 }

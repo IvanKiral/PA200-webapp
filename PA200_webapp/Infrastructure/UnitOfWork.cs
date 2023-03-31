@@ -9,12 +9,12 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private SocialNetworkContext context;
 
     private IClassRepository _classRepository;
-    private ICommentRepository _commentRepository;
     private ILikeRepository _likeRepository;
     private IPostRepository _postRepository;
     private ISubjectRepository _subjectRepository;
     private IUserRepository _userRepository;
     private IWallRepository _wallRepository;
+    private ISchoolRepository _schoolRepository;
 
     public IClassRepository ClassRepository
     {
@@ -28,19 +28,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _classRepository;
         }
     }
-
-    public ICommentRepository CommentRepository
-    {
-        get
-        {
-            if (_commentRepository == null)
-            {
-                _commentRepository = new CommentRepository(context);
-            }
-
-            return _commentRepository;
-        }
-    }
+    
 
     public ILikeRepository LikeRepository
     {
@@ -104,6 +92,19 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             }
 
             return _wallRepository;
+        }
+    }
+    
+    public ISchoolRepository SchoolRepository
+    {
+        get
+        {
+            if (_schoolRepository == null)
+            {
+                _schoolRepository = new SchoolRepository(context);
+            }
+
+            return _schoolRepository;
         }
     }
 

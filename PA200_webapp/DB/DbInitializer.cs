@@ -1,4 +1,6 @@
+using System.Security.Cryptography;
 using PA200_webapp.models;
+using PA200_webapp.Utils;
 
 namespace PA200_webapp.DB;
 
@@ -11,13 +13,22 @@ public class DbInitializer
             return;
         }
 
+        var admin = new User()
+        {
+            Name = "admin",
+            Lastname = "admin",
+            Email = "admin@example.com",
+            Role = UserRole.Admin,
+            PasswordHash = PasswordHash.MakePasswordHash("AdminPassword1")
+        };
+
         var Tom = new User()
         {
             Name = "Tom",
             Lastname = "Shelby",
             Email = "tomshelby@example.com",
             Role = UserRole.Teacher,
-            PasswordHash = "password1"
+            PasswordHash = PasswordHash.MakePasswordHash("password1")
         };
 
         var Arthur = new User()
@@ -26,7 +37,7 @@ public class DbInitializer
             Lastname = "Shelby",
             Email = "arthurshelby@example.com",
             Role = UserRole.Teacher,
-            PasswordHash = "password1"
+            PasswordHash = PasswordHash.MakePasswordHash("password1")
         };
 
         var John = new User()
@@ -35,7 +46,7 @@ public class DbInitializer
             Lastname = "Shelby",
             Email = "johnshelby@example.com",
             Role = UserRole.Student,
-            PasswordHash = "password1"
+            PasswordHash = PasswordHash.MakePasswordHash("password1")
         };
 
         var Ada = new User()
@@ -44,10 +55,17 @@ public class DbInitializer
             Lastname = "Shelby",
             Email = "adashelby@example.com",
             Role = UserRole.Student,
-            PasswordHash = "password1"
+            PasswordHash = PasswordHash.MakePasswordHash("password1")
+        };
+        
+        var ShelbySchool = new School()
+        {
+            Name = "ShelbySchool"
         };
 
         var globalWall = new Wall();
+
+        ShelbySchool.Wall = globalWall;
 
         var TomPost = new Post()
         {
@@ -66,6 +84,8 @@ public class DbInitializer
             Name = "8.A",
             Wall = shelbyWall
         };
+
+        shelbyClass.School = ShelbySchool;
         var AccountingWall = new Wall()
         {
         };
@@ -75,6 +95,8 @@ public class DbInitializer
             Name = "Accounting",
             Wall = AccountingWall
         };
+
+        AccountingSubject.Class = shelbyClass;
 
         var TomsClass = new UserClass()
         {
@@ -137,8 +159,9 @@ public class DbInitializer
             Wall = AccountingWall,
             User = John
         };
-
-        context.AddRange(Tom, Arthur, John, Ada);
+        
+        context.AddRange(ShelbySchool);
+        context.AddRange(admin, Tom, Arthur, John, Ada);
         context.AddRange(shelbyClass);
         context.AddRange(AccountingSubject);
         context.AddRange(globalWall, shelbyWall, AccountingWall);

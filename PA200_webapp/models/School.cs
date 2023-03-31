@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PA200_webapp.models;
 
-public class Subject
+public class School
 {
     [Key]
-    public int SubjectId { get; set; }
+    public int SchoolId { get; set; }
     
     [StringLength(128)]
     [Required]
@@ -13,9 +13,7 @@ public class Subject
     
     public int WallId { get; set; }
     public Wall Wall { get; set; }
-
-    public int ClassId { get; set; }
-    public Class Class { get; set; }
     
-    public IEnumerable<UserSubject> UserSubjects { get; set; }
+    public IEnumerable<Class> Classes { get; set; }
+
 }
