@@ -10,5 +10,7 @@ public static class MapperCreator
         {
             mc.AddProfile<UserProfile>();
             mc.AddProfile<AdminProfile>();
+            mc.AddProfile<SchoolProfile>();
+            mc.AddProfile<PostProfile>();
         });
 }

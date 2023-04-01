@@ -4,5 +4,4 @@ namespace PA200_webapp.Repository;
 
 public interface IWallRepository: IRepositoryBase<Wall>
 {
-    
 }

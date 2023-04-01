@@ -4,5 +4,6 @@ namespace PA200_webapp.Repository;
 
 public interface IUserRepository: IRepositoryBase<User>
 {
-    
+    public User? GetUserWithSchool(string email);
+
 }
