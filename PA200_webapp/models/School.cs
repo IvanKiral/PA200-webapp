@@ -15,5 +15,6 @@ public class School
     public Wall Wall { get; set; }
     
     public IEnumerable<Class> Classes { get; set; }
+    public IEnumerable<User> Users { get; set; }
 
 }

@@ -28,6 +28,9 @@ public class User
     public string PasswordHash { get; set; }
     [Required]
     public UserRole Role { get; set; }
+
+    public int SchoolId { get; set; }
+    public School School { get; set; }
     
     public IEnumerable<Like> Likes { get; set; }
     

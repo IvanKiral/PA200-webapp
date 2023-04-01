@@ -19,7 +19,7 @@ public class DbInitializer
             Lastname = "admin",
             Email = "admin@example.com",
             Role = UserRole.Admin,
-            PasswordHash = PasswordHash.MakePasswordHash("AdminPassword1")
+            PasswordHash = PasswordHash.MakePasswordHash("AdminPassword1"),
         };
 
         var Tom = new User()
@@ -62,6 +62,12 @@ public class DbInitializer
         {
             Name = "ShelbySchool"
         };
+
+        admin.School = ShelbySchool;
+        Tom.School = ShelbySchool;
+        Arthur.School = ShelbySchool;
+        John.School = ShelbySchool;
+        Ada.School = ShelbySchool;
 
         var globalWall = new Wall();
 
