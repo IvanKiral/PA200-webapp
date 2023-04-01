@@ -26,24 +26,24 @@ public class SchoolController: ControllerBase
     
     
     [Route("school/wall")]
-    public ActionResult<SchoolWallResponseModel> GetSchoolWall()
+    public ActionResult<WallResponseModel> GetSchoolWall()
     {
         var currentUser = HttpContext.User.Identity as ClaimsIdentity;
         var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
 
-        return _mapper.Map<SchoolWallResponseModel>(_schoolService.GetSchoolWall(userEmail));
+        return _mapper.Map<WallResponseModel>(_schoolService.GetSchoolWall(userEmail));
     }
 
     [HttpPost]
     [Authorize(Roles ="Teacher, Admin")]
-    [Route("school/post")]
-    public ActionResult<string> AddPostToWall([FromBody] CreatePostOnSchoolWallRequestModel model)
+    [Route("school/wall/post")]
+    public ActionResult<string> AddPostToWall([FromBody] CreatePostRequestModel model)
     {
         try
         {
             var currentUser = HttpContext.User.Identity as ClaimsIdentity;
             var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            _schoolService.CreatePost(userEmail,_mapper.Map<CreatePostOnSchoolWallDTO>(model));
+            _schoolService.CreatePost(userEmail,_mapper.Map<CreatePostDTO>(model));
             return Ok("Created");
         }
         catch (Exception e)

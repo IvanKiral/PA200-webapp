@@ -9,8 +9,8 @@ public class SchoolProfile: Profile
 {
     public SchoolProfile()
     {
-        CreateMap<Wall, SchoolWallDTO>();
-        CreateMap<SchoolWallDTO, SchoolWallResponseModel>();
+        CreateMap<Wall, WallDTO>();
+        CreateMap<WallDTO, WallResponseModel>();
         CreateMap<Post, WallPost>()
             .BeforeMap((source, destination) =>
             {

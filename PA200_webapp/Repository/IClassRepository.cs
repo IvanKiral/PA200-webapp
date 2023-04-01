@@ -10,5 +10,6 @@ public interface IClassRepository: IRepositoryBase<Class>
     public UserClass AddUserToClass(string userEmail, int classId, UserClass userClass);
 
     public UserClass AddStudentToClass(int classId, UserClass userClass);
-
+    
+    public Post CreatePost(string userEmail, int classId, Post post);
 }

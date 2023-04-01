@@ -6,4 +6,8 @@ public interface ISubjectService
 {
     public AddTeacherToClassSubjectDTO AddTeacherToSubject(string email, int subjectId, AddTeacherToClassSubjectDTO dto);
     public AddStudentToClassSubjectDTO AddStudentToSubject(int subjectId, AddStudentToClassSubjectDTO dto);
+    
+    public WallDTO GetSubjectWall(string userEmail, int id);
+
+    public CreatePostDTO CreatePost(string userEmail, int subjectId, CreatePostDTO dto);
 }

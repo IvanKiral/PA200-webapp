@@ -9,8 +9,8 @@ public class PostProfile: Profile
 {
     public PostProfile()
     {
-        CreateMap<CreatePostOnSchoolWallRequestModel, CreatePostOnSchoolWallDTO>();
-        CreateMap<CreatePostOnSchoolWallDTO, Post>();
-        CreateMap<Post, CreatePostOnSchoolWallDTO>();
+        CreateMap<CreatePostRequestModel, CreatePostDTO>();
+        CreateMap<CreatePostDTO, Post>();
+        CreateMap<Post, CreatePostDTO>();
     }
 }

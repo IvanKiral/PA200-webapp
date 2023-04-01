@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PA200_webapp.DB;
 using PA200_webapp.models;
 
@@ -29,5 +30,30 @@ public class SubjectRepository: RepositoryBase<Subject>, ISubjectRepository
         var subjectEntity = SocialNetworkContext.Subjects.FirstOrDefault(c => c.SubjectId == subjectId);
         userSubject.Subject = subjectEntity;
         return SocialNetworkContext.UserSubjects.Add(userSubject).Entity;
+    }
+
+    public Post CreatePost(string userEmail, int subjectId, Post post)
+    {
+
+        var userSubject = SocialNetworkContext.UserSubjects
+            .Include("User")
+            .FirstOrDefault(u => u.SubjectId == subjectId &&  u.User.Email == userEmail);
+        post.Created = DateTime.Now.ToUniversalTime();
+        
+        if (userSubject == null || post.Created <= userSubject.From || post.Created >= userSubject.To)
+        {
+            throw new Exception("User is not registered in the subject");
+        }
+        
+        
+        var wall = SocialNetworkContext.Subjects
+            .Include("Wall")
+            .Include("Wall.Posts")
+            .FirstOrDefault(s => s.SubjectId == subjectId)?
+            .Wall;
+
+        post.Wall = wall;
+        post.User = userSubject.User;
+        return SocialNetworkContext.Posts.Add(post).Entity;
     }
 }

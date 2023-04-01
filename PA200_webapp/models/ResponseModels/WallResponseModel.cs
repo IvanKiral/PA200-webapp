@@ -8,7 +8,7 @@ public class WallPost
     public int LikeCount { get; set; }
 }
 
-public class SchoolWallResponseModel
+public class WallResponseModel
 {
     public IEnumerable<WallPost> Posts { get; set; }
 }

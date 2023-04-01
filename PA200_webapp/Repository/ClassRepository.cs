@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PA200_webapp.DB;
 using PA200_webapp.models;
 
@@ -29,5 +30,29 @@ public class ClassRepository: RepositoryBase<Class>, IClassRepository
         var classEntity = SocialNetworkContext.Classes.FirstOrDefault(c => c.ClassId == classId);
         userClass.Class = classEntity;
         return SocialNetworkContext.UserClasses.Add(userClass).Entity;
+    }
+
+    public Post CreatePost(string userEmail, int classId, Post post)
+    {
+        var userClass = SocialNetworkContext.UserClasses
+            .Include("User")
+            .FirstOrDefault(u => u.ClassId == classId &&  u.User.Email == userEmail);
+        post.Created = DateTime.Now.ToUniversalTime();
+        
+        if (userClass == null || post.Created <= userClass.From || post.Created >= userClass.To)
+        {
+            throw new Exception("User is not registered in the subject");
+        }
+        
+        
+        var wall = SocialNetworkContext.Classes
+            .Include("Wall")
+            .Include("Wall.Posts")
+            .FirstOrDefault(s => s.ClassId == classId)?
+            .Wall;
+
+        post.Wall = wall;
+        post.User = userClass.User;
+        return SocialNetworkContext.Posts.Add(post).Entity;
     }
 }

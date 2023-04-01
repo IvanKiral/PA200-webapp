@@ -38,4 +38,17 @@ public class ClassService: IClassService
         _unitOfWork.Save();
         return _mapper.Map<AddStudentToClassSubjectDTO>(userClass);
     }
+
+    public WallDTO GetClassWall(string userEmail, int id)
+    {
+        return _mapper.Map<WallDTO>(_unitOfWork.WallRepository.GetWallForClass(userEmail, id));
+    }
+
+    public CreatePostDTO CreatePost(string userEmail, int classId, CreatePostDTO dto)
+    {
+        var post = _unitOfWork.ClassRepository.CreatePost(userEmail, classId, _mapper.Map<Post>(dto));
+                
+        _unitOfWork.Save();
+        return _mapper.Map<CreatePostDTO>(post);
+    }
 }

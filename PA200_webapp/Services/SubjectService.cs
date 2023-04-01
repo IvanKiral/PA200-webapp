@@ -32,9 +32,22 @@ public class SubjectService: ISubjectService
     {
         dto.From = dto.From.ToUniversalTime();
         dto.To = dto.To.ToUniversalTime();
-        var userClass = _unitOfWork.ClassRepository.AddStudentToClass(subjectId, _mapper.Map<UserClass>(dto));
+        var userClass = _unitOfWork.SubjectRepository.AddStudentToSubject(subjectId, _mapper.Map<UserSubject>(dto));
         
         _unitOfWork.Save();
         return _mapper.Map<AddStudentToClassSubjectDTO>(userClass);
+    }
+
+    public WallDTO GetSubjectWall(string userEmail, int id)
+    {
+        return _mapper.Map<WallDTO>(_unitOfWork.WallRepository.GetWallForSubject(userEmail, id));
+    }
+
+    public CreatePostDTO CreatePost(string userEmail, int subjectId, CreatePostDTO dto)
+    {
+        var post = _unitOfWork.SubjectRepository.CreatePost(userEmail, subjectId, _mapper.Map<Post>(dto));
+        
+        _unitOfWork.Save();
+        return _mapper.Map<CreatePostDTO>(post);
     }
 }

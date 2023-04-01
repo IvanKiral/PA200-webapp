@@ -17,7 +17,7 @@ public class SchoolService: ISchoolService
         _mapper = mapper;
     }
 
-    public SchoolWallDTO GetSchoolWall(string userEmail)
+    public WallDTO GetSchoolWall(string userEmail)
     {
         var user = _unitOfWork.UserRepository.GetUserWithSchool(userEmail);
 
@@ -26,15 +26,15 @@ public class SchoolService: ISchoolService
             throw new ArgumentException("UserEmail was not found");
         }
 
-        return _mapper.Map<SchoolWallDTO>(user.School.Wall);
+        return _mapper.Map<WallDTO>(user.School.Wall);
     }
 
-    public CreatePostOnSchoolWallDTO CreatePost(string userEmail, CreatePostOnSchoolWallDTO dto)
+    public CreatePostDTO CreatePost(string userEmail, CreatePostDTO dto)
     {
 
         var post = _unitOfWork.PostRepository.CreatePostOnSchoolWall(userEmail,_mapper.Map<Post>(dto));
         _unitOfWork.Save();
 
-        return _mapper.Map<CreatePostOnSchoolWallDTO>(post);
+        return _mapper.Map<CreatePostDTO>(post);
     }
 }
