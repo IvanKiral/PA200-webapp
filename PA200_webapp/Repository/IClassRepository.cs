@@ -7,4 +7,8 @@ public interface IClassRepository: IRepositoryBase<Class>
 {
     public Class createClass(Class newClass);
 
+    public UserClass AddUserToClass(string userEmail, int classId, UserClass userClass);
+
+    public UserClass AddStudentToClass(int classId, UserClass userClass);
+
 }

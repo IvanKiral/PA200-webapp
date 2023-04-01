@@ -12,5 +12,6 @@ public static class MapperCreator
             mc.AddProfile<AdminProfile>();
             mc.AddProfile<SchoolProfile>();
             mc.AddProfile<PostProfile>();
+            mc.AddProfile<ClassProfile>();
         });
 }
