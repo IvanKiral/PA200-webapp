@@ -18,4 +18,23 @@ public class PostRepository: RepositoryBase<Post>, IPostRepository
         post.Created = DateTime.UtcNow;
         return SocialNetworkContext.Add(post).Entity;
     }
+
+    public Post GetPostWithUser(int post)
+    {
+        return SocialNetworkContext.Posts
+            .Include("User")
+            .Include("Wall")
+            .Include("Wall.Subject")
+            .Include("Wall.Class")
+            .FirstOrDefault(p => p.PostId == post);
+    }
+    
+    public Post GetPostWithCommentsLikesWall(int post)
+    {
+        return SocialNetworkContext.Posts
+            .Include("Wall")
+            .Include("Comments")
+            .Include("Likes")
+            .FirstOrDefault(p => p.PostId == post);
+    }
 }

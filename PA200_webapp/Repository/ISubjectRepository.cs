@@ -11,4 +11,6 @@ public interface ISubjectRepository: IRepositoryBase<Subject>
     public UserSubject AddStudentToSubject(int classId, UserSubject userSubject);
 
     public Post CreatePost(string userEmail, int subjectId, Post post);
+    
+    
 }

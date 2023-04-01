@@ -31,4 +31,5 @@ public class Post
     public Post? ParentPost { get; set; }
 
     public IEnumerable<Post> Comments { get; set; }
+    public IEnumerable<Like> Likes { get; set; }
 }

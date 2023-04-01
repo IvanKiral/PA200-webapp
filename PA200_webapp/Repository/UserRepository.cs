@@ -19,5 +19,14 @@ public class UserRepository: RepositoryBase<User>, IUserRepository
             .Include("School.Wall.Posts.User")
             .FirstOrDefault(u => u.Email == email);
     }
-    
+
+    public User GetUserWithUserSubject(string email)
+    {
+        return SocialNetworkContext.Users.Include("UserSubjects").FirstOrDefault(u => u.Email == email);
+    }
+
+    public User GetUserWithUserClass(string email)
+    {
+        return SocialNetworkContext.Users.Include("UserClasses").FirstOrDefault(u => u.Email == email);
+    }
 }

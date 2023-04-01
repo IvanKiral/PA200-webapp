@@ -93,4 +93,42 @@ public class ClassController : ControllerBase
         }
         
     }
+    
+    [HttpDelete]
+    [Authorize]
+    [Route("{classId:int}/wall/post/{postId:int}")]
+    public ActionResult<string> DeletePostFromWall(int classId, int postId)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            _classService.DeletePost(userEmail, classId, postId);
+            return Ok("Deleted");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
+        
+    }
+    
+    [HttpPut]
+    [Authorize]
+    [Route("{classId:int}/wall/post/{postId:int}")]
+    public ActionResult<UpdatePostResponseModel> UpdatePostWall(int classId, int postId, [FromBody] UpdatePostRequestModel model)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            var responseModel = _classService.UpdatePost(userEmail, postId, _mapper.Map<UpdatePostDTO>(model));
+            return Ok(responseModel);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
+        
+    }
 }

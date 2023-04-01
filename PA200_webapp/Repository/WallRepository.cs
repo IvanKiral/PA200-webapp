@@ -19,7 +19,7 @@ public class WallRepository: RepositoryBase<Wall>, IWallRepository
         var classWall = SocialNetworkContext.Walls.Include("Posts").Include("Class").Include("Posts.User")
             .FirstOrDefault(w => w.Class.ClassId == classId);
 
-        classWall.Posts = classWall.Posts.Where(p => p.Created >= userClass.From && p.Created <= userClass.To).ToList();
+        classWall.Posts = classWall.Posts.Where(p => p.Created >= userClass.From && p.Created <= userClass.To && !p.IsDeleted).ToList();
 
         return classWall;
     }
@@ -33,7 +33,7 @@ public class WallRepository: RepositoryBase<Wall>, IWallRepository
         var subjectWall = SocialNetworkContext.Walls.Include("Posts").Include("Subject").Include("Posts.User")
             .FirstOrDefault(w => w.Subject.SubjectId == subjectId);
 
-        subjectWall.Posts = subjectWall.Posts.Where(p => p.Created >= userSubject.From && p.Created <= userSubject.To).ToList();
+        subjectWall.Posts = subjectWall.Posts.Where(p => p.Created >= userSubject.From && p.Created <= userSubject.To && !p.IsDeleted).ToList();
 
         return subjectWall;
     }

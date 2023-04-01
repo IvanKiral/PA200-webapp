@@ -92,6 +92,43 @@ public class SubjectController: ControllerBase
         {
             return StatusCode(500, e);
         }
+    }
+    
+    [HttpDelete]
+    [Authorize]
+    [Route("{subjectId:int}/wall/post/{postId:int}")]
+    public ActionResult<string> DeletePostFromWall(int subjectId, int postId)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            _subjectService.DeletePost(userEmail, subjectId, postId);
+            return Ok("Deleted");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
+        
+    }
+    
+    [HttpPut]
+    [Authorize]
+    [Route("{subjectId:int}/wall/post/{postId:int}")]
+    public ActionResult<UpdatePostResponseModel> UpdatePostWall(int subjectId, int postId, [FromBody] UpdatePostRequestModel model)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            var responseModel = _subjectService.UpdatePost(userEmail, postId, _mapper.Map<UpdatePostDTO>(model));
+            return Ok(responseModel);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
         
     }
 }

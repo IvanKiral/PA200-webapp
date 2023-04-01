@@ -7,4 +7,8 @@ public interface IPostRepository: IRepositoryBase<Post>
 {
     public Post CreatePostOnSchoolWall(string userEmail, Post post);
 
+    public Post GetPostWithUser(int post);
+
+    public Post GetPostWithCommentsLikesWall(int post);
+
 }
