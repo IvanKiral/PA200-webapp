@@ -11,4 +11,6 @@ public interface IUserRepository: IRepositoryBase<User>
 
     public Wall GetUserWall(string email);
 
+    public User GetUserWithSubjectsAndClasses(string userEmail);
+
 }

@@ -48,4 +48,11 @@ public class UserService: IUserService
     {
         return _mapper.Map<WallResponseModel>(_mapper.Map<WallDTO>(_unitOfWork.UserRepository.GetUserWall(email)));
     }
+
+    public UserProfileResponseModel GetUserProfile(string email)
+    {
+        var user = _unitOfWork.UserRepository.GetUserWithSubjectsAndClasses(email);
+
+        return _mapper.Map<UserProfileResponseModel>(user);
+    }
 }
