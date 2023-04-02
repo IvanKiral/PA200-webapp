@@ -3,6 +3,7 @@ using PA200_webapp.Infrastructure;
 using PA200_webapp.models;
 using PA200_webapp.models.DTO;
 using PA200_webapp.models.DTO.Create;
+using PA200_webapp.models.ResponseModels;
 using PA200_webapp.Repository;
 
 namespace PA200_webapp.Services;
@@ -37,5 +38,20 @@ public class AdminService: IAdminService
         var subjectEntity = _unitOfWork.SubjectRepository.createSubject(_mapper.Map<Subject>(subjectDto));
         _unitOfWork.Save();
         return _mapper.Map<SubjectCreatedDTO>(subjectEntity);
+    }
+
+    public GetUsersResponseModel GetUsers()
+    {
+        return new GetUsersResponseModel() { Users = _unitOfWork.UserRepository.FindAll() };
+    }
+
+    public GetClassesResponseModel GetClasses()
+    {
+        return new GetClassesResponseModel() { Classes = _unitOfWork.ClassRepository.FindAll() };
+    }
+
+    public GetSubjectsResponseModel GetSubjects()
+    {
+        return new GetSubjectsResponseModel() { Subjects = _unitOfWork.SubjectRepository.FindAll() };
     }
 }

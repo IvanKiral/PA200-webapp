@@ -63,4 +63,13 @@ public class UserRepository : RepositoryBase<User>, IUserRepository
             Posts = posts
         };
     }
+
+    public User GetUserWithSubjectsAndClasses(string userEmail)
+    {
+        return SocialNetworkContext.Users
+            .Include("UserClasses.Class")
+            .Include("UserSubjects.Subject")
+            .FirstOrDefault(u => u.Email == userEmail);
+        
+    }
 }

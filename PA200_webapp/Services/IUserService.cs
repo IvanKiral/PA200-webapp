@@ -11,4 +11,6 @@ public interface IUserService
     public User? authenticateUser(LoginUserDTO user);
 
     public WallResponseModel GetUserWall(string email);
+
+    public UserProfileResponseModel GetUserProfile(string emial);
 }

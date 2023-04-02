@@ -39,4 +39,22 @@ public class UserController: ControllerBase
             throw;
         }
     }
+    
+    [HttpGet]
+    [Route("")]
+    public UserProfileResponseModel GetUserProfile()
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            return _userService.GetUserProfile(userEmail);
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

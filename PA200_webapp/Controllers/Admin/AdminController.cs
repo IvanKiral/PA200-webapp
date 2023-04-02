@@ -79,13 +79,46 @@ public class AdminController: ControllerBase
     }
     
     [Authorize(Roles="Admin")]
-    [HttpPost]
-    [Route("school")]
-    public ActionResult<CreateSchoolResponseModel> CreateSchool([FromBody] CreateSchoolRequestModel model)
+    [HttpGet]
+    [Route("users")]
+    public ActionResult<GetUsersResponseModel> GetUsers()
     {
         try
         {
-            var responseModel = _adminService.CreateSchool(_mapper.Map<CreateSchoolDTO>(model));
+            var responseModel = _adminService.GetUsers();
+            return Ok(responseModel);
+        }
+        catch(Exception e)
+        {
+            return StatusCode(500, e);
+        }
+    }
+    
+    
+    [Authorize(Roles="Admin")]
+    [HttpGet]
+    [Route("class")]
+    public ActionResult<GetClassesResponseModel> GetClasses()
+    {
+        try
+        {
+            var responseModel = _adminService.GetClasses();
+            return Ok(responseModel);
+        }
+        catch(Exception e)
+        {
+            return StatusCode(500, e);
+        }
+    }
+    
+    [Authorize(Roles="Admin")]
+    [HttpGet]
+    [Route("subject")]
+    public ActionResult<GetUsersResponseModel> GetSubjects()
+    {
+        try
+        {
+            var responseModel = _adminService.GetSubjects();
             return Ok(responseModel);
         }
         catch(Exception e)
