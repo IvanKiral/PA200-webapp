@@ -24,7 +24,7 @@ public class SchoolController: ControllerBase
         _schoolService = schoolService;
     }
     
-    
+    [HttpGet]
     [Route("school/wall")]
     public ActionResult<WallResponseModel> GetSchoolWall()
     {

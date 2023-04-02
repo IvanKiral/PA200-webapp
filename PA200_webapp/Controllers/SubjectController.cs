@@ -59,7 +59,7 @@ public class SubjectController: ControllerBase
         
     }
     
-    
+    [HttpGet]
     [Route("{id:int}/wall")]
     public ActionResult<WallResponseModel> GetClassWall(int id)
     {

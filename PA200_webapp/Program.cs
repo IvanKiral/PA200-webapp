@@ -27,7 +27,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);;
+builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -37,6 +38,12 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<SocialNetworkContext>();
     context.Database.EnsureCreated();
     DbInitializer.Initialize(context);
+}
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

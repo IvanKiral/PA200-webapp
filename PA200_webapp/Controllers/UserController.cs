@@ -22,6 +22,7 @@ public class UserController: ControllerBase
         _userService = userService;
     }
 
+    [HttpGet]
     [Route("wall")]
     public WallResponseModel GetUserWall()
     {
