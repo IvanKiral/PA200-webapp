@@ -4,7 +4,7 @@ using PA200_webapp.models;
 
 namespace PA200_webapp.Repository;
 
-public class UserRepository: RepositoryBase<User>, IUserRepository
+public class UserRepository : RepositoryBase<User>, IUserRepository
 {
     public UserRepository(SocialNetworkContext socialNetworkContext) : base(socialNetworkContext)
     {
@@ -17,6 +17,8 @@ public class UserRepository: RepositoryBase<User>, IUserRepository
             .Include("School.Wall")
             .Include("School.Wall.Posts")
             .Include("School.Wall.Posts.User")
+            .Include("School.Wall.Posts.Likes")
+            .Include("School.Wall.Posts.Comments")
             .FirstOrDefault(u => u.Email == email);
     }
 
@@ -49,11 +51,13 @@ public class UserRepository: RepositoryBase<User>, IUserRepository
             .Concat(user.UserClasses.SelectMany(c => c.Class.Wall.Posts))
             .Concat(user.UserSubjects.SelectMany(c => c.Subject.Wall.Posts));
 
-        posts = posts.Select(p =>
-        {
-            p.Comments = p.Comments.Take(1);
-            return p;
-        });
+        posts = posts
+            .Where(p => !p.IsDeleted)
+            .Select(p =>
+            {
+                p.Comments = p.Comments.Take(1);
+                return p;
+            });
 
         return new Wall()
         {

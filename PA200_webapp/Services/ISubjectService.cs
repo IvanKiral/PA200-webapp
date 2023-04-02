@@ -10,7 +10,7 @@ public interface ISubjectService
     
     public WallDTO GetSubjectWall(string userEmail, int id);
 
-    public CreatePostDTO CreatePost(string userEmail, int subjectId, CreatePostDTO dto);
+    public CreatePostResponseModel CreatePost(string userEmail, int subjectId, CreatePostDTO dto);
 
     public void DeletePost(string userEmail, int subjectId, int post);
 

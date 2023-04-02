@@ -7,7 +7,7 @@ namespace PA200_webapp.Services;
 
 public interface IUserService
 {
-    public void createUser(CreateUserDTO model);
+    public CreateUserResponseModel createUser(CreateUserDTO model);
     public User? authenticateUser(LoginUserDTO user);
 
     public WallResponseModel GetUserWall(string email);

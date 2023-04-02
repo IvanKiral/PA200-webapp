@@ -18,13 +18,14 @@ public class UserService: IUserService
         _mapper = mapper;
     }
 
-    public void createUser(CreateUserDTO model)
+    public CreateUserResponseModel createUser(CreateUserDTO model)
     {
         var hashedPassword = PasswordHash.MakePasswordHash(model.Password);
         var user = _mapper.Map<User>(model);
         user.PasswordHash = hashedPassword;
-        _unitOfWork.UserRepository.Create(user);
+        var entity = _unitOfWork.UserRepository.Create(user);
         _unitOfWork.Save();
+        return _mapper.Map<CreateUserResponseModel>(entity);
     }
 
     public User? authenticateUser(LoginUserDTO user)

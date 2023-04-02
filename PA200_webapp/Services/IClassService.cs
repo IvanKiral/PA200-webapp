@@ -11,7 +11,7 @@ public interface IClassService
 
     public WallDTO GetClassWall(string userEmail, int id);
     
-    public CreatePostDTO CreatePost(string userEmail, int classId, CreatePostDTO dto);
+    public CreatePostResponseModel CreatePost(string userEmail, int classId, CreatePostDTO dto);
     
     public void DeletePost(string userEmail, int classId, int post);
 

@@ -16,7 +16,7 @@ public abstract class RepositoryBase<T>: IRepositoryBase<T> where T: class
     public IQueryable<T> FindAll() => SocialNetworkContext.Set<T>().AsNoTracking();
     public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) => 
         SocialNetworkContext.Set<T>().Where(expression).AsNoTracking();
-    public void Create(T entity) => SocialNetworkContext.Set<T>().Add(entity);
-    public void Update(T entity) => SocialNetworkContext.Set<T>().Update(entity);
+    public T Create(T entity) => SocialNetworkContext.Set<T>().Add(entity).Entity;
+    public T Update(T entity) => SocialNetworkContext.Set<T>().Update(entity).Entity;
     public void Delete(T entity) => SocialNetworkContext.Set<T>().Remove(entity);
 }

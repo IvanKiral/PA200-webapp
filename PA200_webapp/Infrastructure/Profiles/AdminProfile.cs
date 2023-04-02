@@ -25,6 +25,6 @@ public class AdminProfile: Profile
         CreateMap<Class, ClassCreatedDto>();
         CreateMap<School, SchoolCreatedDTO>();
         CreateMap<Subject, SubjectCreatedDTO>();
-        
+        CreateMap<User, CreateUserResponseModel>();
     }
 }

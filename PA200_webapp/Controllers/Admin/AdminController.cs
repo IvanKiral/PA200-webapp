@@ -33,12 +33,12 @@ public class AdminController: ControllerBase
     [Authorize(Roles="Admin")]
     [HttpPost]
     [Route("user")]
-    public ActionResult CreateUser([FromBody] CreateUserRequestModel model)
+    public ActionResult<CreateUserResponseModel> CreateUser([FromBody] CreateUserRequestModel model)
     {
         try
         {
-            _userService.createUser(_mapper.Map<CreateUserDTO>(model));
-            return Ok("Registered");
+            var response = _userService.createUser(_mapper.Map<CreateUserDTO>(model));
+            return Ok(response);
         }
         catch(Exception e)
         {

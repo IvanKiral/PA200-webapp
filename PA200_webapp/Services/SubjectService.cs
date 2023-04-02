@@ -44,12 +44,12 @@ public class SubjectService: ISubjectService
         return _mapper.Map<WallDTO>(_unitOfWork.WallRepository.GetWallForSubject(userEmail, id));
     }
 
-    public CreatePostDTO CreatePost(string userEmail, int subjectId, CreatePostDTO dto)
+    public CreatePostResponseModel CreatePost(string userEmail, int subjectId, CreatePostDTO dto)
     {
         var post = _unitOfWork.SubjectRepository.CreatePost(userEmail, subjectId, _mapper.Map<Post>(dto));
         
         _unitOfWork.Save();
-        return _mapper.Map<CreatePostDTO>(post);
+        return _mapper.Map<CreatePostResponseModel>(post);
     }
     
 

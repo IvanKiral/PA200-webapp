@@ -78,14 +78,14 @@ public class ClassController : ControllerBase
     [HttpPost]
     [Authorize]
     [Route("{id:int}/wall/post")]
-    public ActionResult<string> AddPostToWall(int id, [FromBody] CreatePostRequestModel model)
+    public ActionResult<CreatePostResponseModel> AddPostToWall(int id, [FromBody] CreatePostRequestModel model)
     {
         try
         {
             var currentUser = HttpContext.User.Identity as ClaimsIdentity;
             var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            _classService.CreatePost(userEmail, id,_mapper.Map<CreatePostDTO>(model));
-            return Ok("Created");
+            var response = _classService.CreatePost(userEmail, id,_mapper.Map<CreatePostDTO>(model));
+            return Ok(response);
         }
         catch (Exception e)
         {

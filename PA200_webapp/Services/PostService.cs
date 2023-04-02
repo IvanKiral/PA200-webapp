@@ -57,7 +57,9 @@ public class PostService: IPostService
             UserId = user.UserId,
             Text = dto.Text,
             Type = PostType.Comment,
-            WallId = parentPost.WallId
+            WallId = parentPost.WallId,
+            ParentPostId = parentPostId,
+            Created = DateTime.Now.ToUniversalTime()
         });
         
         _unitOfWork.Save();

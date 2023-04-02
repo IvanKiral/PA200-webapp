@@ -16,10 +16,17 @@ public class WallRepository: RepositoryBase<Wall>, IWallRepository
             .Include("User")
             .FirstOrDefault(u => u.ClassId == classId &&  u.User.Email == userEmail);
 
-        var classWall = SocialNetworkContext.Walls.Include("Posts").Include("Class").Include("Posts.User")
+        var classWall = SocialNetworkContext.Walls
+            .Include("Posts")
+            .Include("Subject")
+            .Include("Posts.User")
+            .Include("Posts.Comments")
+            .Include("Posts.Likes")
             .FirstOrDefault(w => w.Class.ClassId == classId);
 
-        classWall.Posts = classWall.Posts.Where(p => p.Created >= userClass.From && p.Created <= userClass.To && !p.IsDeleted).ToList();
+        classWall.Posts = classWall.Posts
+            .Where(p => p.Created >= userClass.From && p.Created <= userClass.To && !p.IsDeleted && p.Type == PostType.Post)
+            .ToList();
 
         return classWall;
     }
@@ -30,10 +37,18 @@ public class WallRepository: RepositoryBase<Wall>, IWallRepository
             .Include("User")
             .FirstOrDefault(u => u.SubjectId == subjectId &&  u.User.Email == userEmail);
 
-        var subjectWall = SocialNetworkContext.Walls.Include("Posts").Include("Subject").Include("Posts.User")
+        var subjectWall = SocialNetworkContext.Walls
+            .Include("Posts")
+            .Include("Subject")
+            .Include("Posts.User")
+            .Include("Posts.Comments")
+            .Include("Posts.Likes")
             .FirstOrDefault(w => w.Subject.SubjectId == subjectId);
 
-        subjectWall.Posts = subjectWall.Posts.Where(p => p.Created >= userSubject.From && p.Created <= userSubject.To && !p.IsDeleted).ToList();
+        subjectWall.Posts = subjectWall
+            .Posts
+            .Where(p => p.Created >= userSubject.From && p.Created <= userSubject.To && !p.IsDeleted && p.Type == PostType.Post)
+            .ToList();
 
         return subjectWall;
     }

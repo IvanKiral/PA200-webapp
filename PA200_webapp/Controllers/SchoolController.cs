@@ -37,14 +37,14 @@ public class SchoolController: ControllerBase
     [HttpPost]
     [Authorize(Roles ="Teacher, Admin")]
     [Route("school/wall/post")]
-    public ActionResult<string> AddPostToWall([FromBody] CreatePostRequestModel model)
+    public ActionResult<CreatePostResponseModel> AddPostToWall([FromBody] CreatePostRequestModel model)
     {
         try
         {
             var currentUser = HttpContext.User.Identity as ClaimsIdentity;
             var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            _schoolService.CreatePost(userEmail,_mapper.Map<CreatePostDTO>(model));
-            return Ok("Created");
+            var response = _schoolService.CreatePost(userEmail,_mapper.Map<CreatePostDTO>(model));
+            return Ok(response);
         }
         catch (Exception e)
         {
