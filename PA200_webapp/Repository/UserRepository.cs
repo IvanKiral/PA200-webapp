@@ -46,8 +46,7 @@ public class UserRepository : RepositoryBase<User>, IUserRepository
             .Include("UserClasses.Class.Wall.Posts.User")
             .FirstOrDefault(u => u.Email == email);
 
-        var posts = user.Posts
-            .Concat(user.School.Wall.Posts)
+        var posts = user.School.Wall.Posts
             .Concat(user.UserClasses.SelectMany(c => c.Class.Wall.Posts))
             .Concat(user.UserSubjects.SelectMany(c => c.Subject.Wall.Posts));
 
