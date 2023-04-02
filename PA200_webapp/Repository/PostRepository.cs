@@ -35,6 +35,12 @@ public class PostRepository: RepositoryBase<Post>, IPostRepository
             .Include("Wall")
             .Include("Comments")
             .Include("Likes")
+            .Include("User")
             .FirstOrDefault(p => p.PostId == post);
+    }
+
+    public Post CreateComment(Post newComment)
+    {
+        return SocialNetworkContext.Posts.Add(newComment).Entity;
     }
 }

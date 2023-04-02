@@ -5,6 +5,8 @@ public class WallPost
     public string AuthorName { get; set; }
     public string Text { get; set; }
 
+    public IEnumerable<Post> Comments { get; set; }
+
     public int LikeCount { get; set; }
 }
 

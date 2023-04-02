@@ -14,7 +14,8 @@ public class SchoolProfile: Profile
         CreateMap<Post, WallPost>()
             .BeforeMap((source, destination) =>
             {
-                destination.AuthorName = source.User.Name;
+                destination.AuthorName = source.User.Name + source.User.Lastname;
+                destination.LikeCount = source.Likes.Count();
             });;
     }
 }

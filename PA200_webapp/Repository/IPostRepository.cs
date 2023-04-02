@@ -11,4 +11,6 @@ public interface IPostRepository: IRepositoryBase<Post>
 
     public Post GetPostWithCommentsLikesWall(int post);
 
+    public Post CreateComment(Post newComment);
+    
 }

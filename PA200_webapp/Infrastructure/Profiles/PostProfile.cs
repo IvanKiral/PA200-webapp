@@ -14,6 +14,8 @@ public class PostProfile: Profile
         CreateMap<CreatePostDTO, Post>();
         CreateMap<Post, CreatePostDTO>();
         
+        CreateMap<Post, CreatePostResponseModel>();
+        
         CreateMap<UpdatePostRequestModel, UpdatePostDTO>();
         CreateMap<UpdatePostDTO, Post>();
         CreateMap<Post, UpdatePostResponseModel>();

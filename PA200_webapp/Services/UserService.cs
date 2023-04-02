@@ -3,6 +3,7 @@ using PA200_webapp.Infrastructure;
 using PA200_webapp.models;
 using PA200_webapp.models.DTO;
 using PA200_webapp.models.RequestModels;
+using PA200_webapp.models.ResponseModels;
 using PA200_webapp.Utils;
 
 namespace PA200_webapp.Services;
@@ -40,5 +41,10 @@ public class UserService: IUserService
         }
 
         return null;
+    }
+
+    public WallResponseModel GetUserWall(string email)
+    {
+        return _mapper.Map<WallResponseModel>(_mapper.Map<WallDTO>(_unitOfWork.UserRepository.GetUserWall(email)));
     }
 }

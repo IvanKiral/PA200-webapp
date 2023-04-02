@@ -17,6 +17,7 @@ public static class ServiceExtensions
         services.AddScoped<ISchoolService, SchoolService>();
         services.AddScoped<IClassService, ClassService>();
         services.AddScoped<ISubjectService, SubjectService>();
+        services.AddScoped<IPostService, PostService>();
     }
 
     public static void ConfigureMapper(this IServiceCollection services)

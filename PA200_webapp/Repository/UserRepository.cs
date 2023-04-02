@@ -29,4 +29,35 @@ public class UserRepository: RepositoryBase<User>, IUserRepository
     {
         return SocialNetworkContext.Users.Include("UserClasses").FirstOrDefault(u => u.Email == email);
     }
+
+    public Wall GetUserWall(string email)
+    {
+        var user = SocialNetworkContext.Users
+            .Include("School.Wall.Posts.Likes")
+            .Include("School.Wall.Posts.Comments")
+            .Include("School.Wall.Posts.User")
+            .Include("UserSubjects.Subject.Wall.Posts.User")
+            .Include("UserSubjects.Subject.Wall.Posts.Likes")
+            .Include("UserSubjects.Subject.Wall.Posts.Comments")
+            .Include("UserClasses.Class.Wall.Posts.Likes")
+            .Include("UserClasses.Class.Wall.Posts.Comments")
+            .Include("UserClasses.Class.Wall.Posts.User")
+            .FirstOrDefault(u => u.Email == email);
+
+        var posts = user.Posts
+            .Concat(user.School.Wall.Posts)
+            .Concat(user.UserClasses.SelectMany(c => c.Class.Wall.Posts))
+            .Concat(user.UserSubjects.SelectMany(c => c.Subject.Wall.Posts));
+
+        posts = posts.Select(p =>
+        {
+            p.Comments = p.Comments.Take(1);
+            return p;
+        });
+
+        return new Wall()
+        {
+            Posts = posts
+        };
+    }
 }
