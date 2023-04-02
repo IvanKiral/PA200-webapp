@@ -74,6 +74,7 @@ public class PostController: ControllerBase
         }
     }
     
+    [HttpGet]
     [Route("{postId:int}")]
     public ActionResult<WallPost> PostDetail(int postId)
     {
