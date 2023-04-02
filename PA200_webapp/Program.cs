@@ -40,11 +40,9 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.Initialize(context);
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
