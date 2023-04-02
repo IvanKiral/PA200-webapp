@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "47ef48cf-51b4-413a-b97c-ecbb7e1e4107",
+		"name": "Remote Student Path",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14467017"
+	},
+	"item": [
+		{
+			"name": "Login Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"tomshelby@example.com\",\n    \"password\":\"password1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/login",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get School Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/school/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"school",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Class Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/class/3/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subject Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/subject/4/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"4",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Subject Wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello from the teacher in the sbuject\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/4/wall/post",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Class Wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello in class from teacher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/3/wall/post",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on subject wall Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/subject/4/wall/post/26",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on class wall Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/class/3/wall/post/25",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Wall Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/user/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/post/20",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Subject Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Updated Post text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/4/wall/post/27",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Class Copy",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Update in Class\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/1/wall/post/10",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"1",
+						"wall",
+						"post",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Like to Post Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/27/like",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment To Post Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"paradicka\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/23/comment",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"23",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Like from post Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/27/like",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ0b21zaGVsYnlAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgxMTA0MzI2LCJpc3MiOiJwYTIwMC00ODQ5NzEtaHcwMi5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6InBhMjAwLTQ4NDk3MS1odzAyLmF6dXJld2Vic2l0ZXMubmV0In0.Bb2vWQwIee--WJ8YEclvADEaAbjB7tLFPe-bZ5MpAYQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "pa200-484971.azurewebsites.net",
+			"type": "string"
+		}
+	]
+}

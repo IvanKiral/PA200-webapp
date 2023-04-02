@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "59b48549-9a49-4938-9ae7-5dadc79ae308",
+		"name": "Local Teacher Path",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14467017"
+	},
+	"item": [
+		{
+			"name": "Login Teacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"tomshelby@example.com\",\n    \"password\":\"password1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Teacher to class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgwOTkxNDkxLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTc1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NSJ9.VSjayqdVWxurRXP5yhLaw3dn3XLpxHQiw-ns1wXndbs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/1/teacher",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"1",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add teacher to subject",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgwOTkxNDkxLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTc1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NSJ9.VSjayqdVWxurRXP5yhLaw3dn3XLpxHQiw-ns1wXndbs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/1/teacher",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"1",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add student to class",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgwOTkxNDkxLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTc1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NSJ9.VSjayqdVWxurRXP5yhLaw3dn3XLpxHQiw-ns1wXndbs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/1/teacher",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"1",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add student to subject",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgwOTkxNDkxLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTc1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NSJ9.VSjayqdVWxurRXP5yhLaw3dn3XLpxHQiw-ns1wXndbs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/1/student",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"1",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post On Global Wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Hello from teacher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/school/wall/post",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"school",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Subject wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello from the teacher in the sbuject\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/subject/4/wall/post",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Class wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello in class from teacher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/3/wall/post",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on subject wall",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/subject/4/wall/post/26",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on class wall",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/class/3/wall/post/25",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get School Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/school/wall",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"school",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Class Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/class/3/wall",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"3",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subject Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/subject/4/wall",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"subject",
+						"4",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/user/wall",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"user",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7175/post/20",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"post",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Subject",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Updated Post text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/subject/4/wall/post/27",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Class",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Update in Class\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/class/1/wall/post/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"class",
+						"1",
+						"wall",
+						"post",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Like to Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/post/27/like",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment To Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"paradicka\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/post/23/comment",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"post",
+						"23",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Like from post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7175/post/27/like",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7175",
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgxMDg5MDAzLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTc1IiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NSJ9.-rSL4aSTkLW3bpc9h5a2OTFl99ZzOMXcGpuQiV0uA4w",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

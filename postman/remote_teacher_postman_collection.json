@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "2fd8e1d2-5ee8-4973-80f2-35dc860f5411",
+		"name": "Remote Teacher Path",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14467017"
+	},
+	"item": [
+		{
+			"name": "Login Teacher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"tomshelby@example.com\",\n    \"password\":\"password1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/login",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Teacher to class",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/3/teacher",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add teacher to subject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/2/teacher",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"2",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add student to class",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/1/teacher",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"1",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add student to subject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/2/student",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"2",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post On Global Wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Hello from teacher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/school/wall/post",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"school",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Subject wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello from the teacher in the sbuject\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/4/wall/post",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"4",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post on Class wall",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello in class from teacher\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/3/wall/post",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on subject wall",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/subject/2/wall/post/4",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"2",
+						"wall",
+						"post",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post on class wall",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/class/3/wall/post/25",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall",
+						"post",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get School Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/school/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"school",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Class Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/class/3/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"3",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subject Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/subject/2/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"2",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Wall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/user/wall",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"wall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/20",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Subject",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Updated Post text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/subject/2/wall/post/5",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"2",
+						"wall",
+						"post",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post on Class",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"Update in Class\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/class/1/wall/post/10",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"class",
+						"1",
+						"wall",
+						"post",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Like to Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/27/like",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment To Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Text\": \"paradicka\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/23/comment",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"23",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Like from post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/27/like",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"27",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ0b21zaGVsYnlAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgxMTA0NDczLCJpc3MiOiJwYTIwMC00ODQ5NzEtaHcwMi5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6InBhMjAwLTQ4NDk3MS1odzAyLmF6dXJld2Vic2l0ZXMubmV0In0.l3iTthAO_sV-wEwzbQ8M1wq7x17fLg6l4guRdM9OL0U",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "pa200-484971.azurewebsites.net",
+			"type": "string"
+		}
+	]
+}
