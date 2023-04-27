@@ -7,8 +7,8 @@ using PA200_webapp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<SocialNetworkContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("NetworkContext")));
+builder.Services.Configure<MongoDBDatabase>(
+    builder.Configuration.GetSection("MongoDBDatabase"));
 
 builder.Services.ConfigureUnitOfWork();
 builder.Services.ConfigureServices();
@@ -31,14 +31,14 @@ builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.Re
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<SocialNetworkContext>();
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
-}
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//
+//     var context = services.GetRequiredService<SocialNetworkContext>();
+//     context.Database.EnsureCreated();
+//     DbInitializer.Initialize(context);
+// }
 
 
 app.UseSwagger();
