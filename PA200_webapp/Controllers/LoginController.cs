@@ -13,12 +13,12 @@ namespace PA200_webapp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class LoginController: ControllerBase
+public class LoginController : ControllerBase
 {
     private IUserService _userService;
     private IAuthService _authService;
     private IMapper _mapper;
-    
+
     public LoginController(IUserService userService, IAuthService authService, IMapper mapper)
     {
         _userService = userService;
@@ -37,5 +37,12 @@ public class LoginController: ControllerBase
 
         var token = _authService.generateToken(user);
         return new LoginResponseModel() { Token = token };
+    }
+
+    [HttpGet]
+    [Route("dummy")]
+    public ActionResult Dummy()
+    {
+        return Ok("Test Dummy");
     }
 }
