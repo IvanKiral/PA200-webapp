@@ -28,15 +28,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-// builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 var x = builder.Configuration.GetSection("MongoDBDatabase").Get<MongoDBDatabase>();
 MongoDBInitializer.Initliaze(x);
 
 
-// app.UseSwagger();
-// app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

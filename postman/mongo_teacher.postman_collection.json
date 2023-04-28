@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2fd8e1d2-5ee8-4973-80f2-35dc860f5411",
-		"name": "Remote Teacher Path",
+		"_postman_id": "70a89a72-b29b-4ede-babb-88e359fc670c",
+		"name": "MongoDB Local Teacher Path",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "14467017"
 	},
@@ -48,14 +48,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/class/3/teacher",
+					"raw": "https://{{url}}/class/644c190584111c3cdd74c23b/teacher",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"class",
-						"3",
+						"644c190584111c3cdd74c23b",
 						"teacher"
 					]
 				}
@@ -77,14 +77,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/subject/2/teacher",
+					"raw": "https://{{url}}/subject/644c190784111c3cdd74c23d/teacher",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"subject",
-						"2",
+						"644c190784111c3cdd74c23d",
 						"teacher"
 					]
 				}
@@ -98,7 +98,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"raw": "{\n    \"userEmail\": \"ferostudent0@example.com\",\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -106,15 +106,15 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/class/1/teacher",
+					"raw": "https://{{url}}/class/644c190584111c3cdd74c23b/student",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"class",
-						"1",
-						"teacher"
+						"644c190584111c3cdd74c23b",
+						"student"
 					]
 				}
 			},
@@ -127,7 +127,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
+					"raw": "{\n    \"userEmail\": \"ferostudent0@example.com\",\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -135,14 +135,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/subject/2/student",
+					"raw": "https://{{url}}/subject/644c190784111c3cdd74c23d/student",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"subject",
-						"2",
+						"644c190784111c3cdd74c23d",
 						"student"
 					]
 				}
@@ -193,14 +193,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/subject/4/wall/post",
+					"raw": "https://{{url}}/subject/644c190784111c3cdd74c23d/wall/post",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"subject",
-						"4",
+						"644c190784111c3cdd74c23d",
 						"wall",
 						"post"
 					]
@@ -223,60 +223,16 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/class/3/wall/post",
+					"raw": "https://{{url}}/class/644c16ab146c3bc811d8e585/wall/post",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"class",
-						"3",
+						"644c16ab146c3bc811d8e585",
 						"wall",
 						"post"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete post on subject wall",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://{{url}}/subject/2/wall/post/4",
-					"protocol": "https",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"subject",
-						"2",
-						"wall",
-						"post",
-						"4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete post on class wall",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://{{url}}/class/3/wall/post/25",
-					"protocol": "https",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"class",
-						"3",
-						"wall",
-						"post",
-						"25"
 					]
 				}
 			},
@@ -307,14 +263,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/class/3/wall",
+					"raw": "https://{{url}}/class/644c190584111c3cdd74c23b/wall",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"class",
-						"3",
+						"644c190584111c3cdd74c23b",
 						"wall"
 					]
 				}
@@ -327,14 +283,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/subject/2/wall",
+					"raw": "https://{{url}}/subject/644c190784111c3cdd74c23d/wall",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"subject",
-						"2",
+						"644c190784111c3cdd74c23d",
 						"wall"
 					]
 				}
@@ -366,12 +322,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/20",
+					"raw": "https://{{url}}/post/20",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
+						"post",
 						"20"
 					]
 				}
@@ -379,7 +336,7 @@
 			"response": []
 		},
 		{
-			"name": "Update Post on Subject",
+			"name": "Update Post",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -393,77 +350,14 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/subject/2/wall/post/5",
-					"protocol": "https",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"subject",
-						"2",
-						"wall",
-						"post",
-						"5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Post on Class",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"Text\": \"Update in Class\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://{{url}}/class/1/wall/post/10",
-					"protocol": "https",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"class",
-						"1",
-						"wall",
-						"post",
-						"10"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Like to Post",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"userId\": 4,\n    \"from\": \"2023-01-01\",\n    \"to\": \"2023-06-01\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://{{url}}/post/27/like",
+					"raw": "https://{{url}}/post/644bfa40947c1e954f59b0cc",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"post",
-						"27",
-						"like"
+						"644bfa40947c1e954f59b0cc"
 					]
 				}
 			},
@@ -484,15 +378,63 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/post/23/comment",
+					"raw": "https://{{url}}/post/644bfa40947c1e954f59b0cc/comment",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"post",
-						"23",
+						"644bfa40947c1e954f59b0cc",
 						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/post/644bfa2f947c1e954f59b0c9",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"644bfa2f947c1e954f59b0c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Like to Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/post/644bfa40947c1e954f59b0cc/like",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"post",
+						"644bfa40947c1e954f59b0cc",
+						"like"
 					]
 				}
 			},
@@ -513,15 +455,34 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/post/27/like",
+					"raw": "https://{{url}}//post/644bfa40947c1e954f59b0cc/like",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
+						"",
 						"post",
-						"27",
+						"644bfa40947c1e954f59b0cc",
 						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/user",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
 					]
 				}
 			},
@@ -533,7 +494,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ0b21zaGVsYnlAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgxMTA0NDczLCJpc3MiOiJwYTIwMC00ODQ5NzEtaHcwMi5henVyZXdlYnNpdGVzLm5ldCIsImF1ZCI6InBhMjAwLTQ4NDk3MS1odzAyLmF6dXJld2Vic2l0ZXMubmV0In0.l3iTthAO_sV-wEwzbQ8M1wq7x17fLg6l4guRdM9OL0U",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJoZW5yeXRlYWNoZXJAZXhhbXBsZS5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjgzMzI2NzA2LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjcxNzUvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo3MTc1LyJ9.6HmaMLhBh78Zi1hlHJ2iSsdok4IQaDx-Cul4ucQ5qZQ",
 				"type": "string"
 			}
 		]
@@ -561,7 +522,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "pa200-484971.azurewebsites.net",
+			"value": "localhost:7175",
 			"type": "string"
 		}
 	]
