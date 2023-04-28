@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using PA200_webapp.models;
+using PA200_webapp.models.MongoDB;
 
 namespace PA200_webapp.Infrastructure;
 
