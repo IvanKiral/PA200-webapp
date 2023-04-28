@@ -35,6 +35,7 @@ public static class ServiceExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IClassRepository, ClassRepository>();
         services.AddScoped<ISchoolRepository, SchoolRepository>();
+        services.AddScoped<ISubjectRepository, SubjectRepository>();
     }
 
     public static void ConfigureMapper(this IServiceCollection services)

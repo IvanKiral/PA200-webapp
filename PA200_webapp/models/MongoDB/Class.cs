@@ -7,5 +7,4 @@ public class Class: BaseDocument
 {
     public string Name { get; set; }
     public Wall Wall { get; set; } = new Wall();
-    public IEnumerable<Subject> Subjects { get; set; } = new List<Subject>();
 }

@@ -5,6 +5,7 @@ using PA200_webapp.models.MongoDB;
 using PA200_webapp.models.ResponseModels;
 using PA200_webapp.Repository.MongoDB.Interfaces;
 using PA200_webapp.Utils;
+using ISubjectRepository = PA200_webapp.Repository.MongoDB.Interfaces.ISubjectRepository;
 using IUserRepository = PA200_webapp.Repository.MongoDB.Interfaces.IUserRepository;
 
 namespace PA200_webapp.Services.MongoDB;
@@ -13,13 +14,15 @@ public class AdminService: IAdminService
 {
     private IUserRepository _userRepository;
     private IClassRepository _classRepository;
+    private ISubjectRepository _subjectRepository;
     private IMapper _mapper;
 
-    public AdminService(IMapper mapper, IUserRepository userRepository, IClassRepository classRepository)
+    public AdminService(IMapper mapper, IUserRepository userRepository, IClassRepository classRepository, ISubjectRepository subjectRepository)
     {
         _mapper = mapper;
         _userRepository = userRepository;
         _classRepository = classRepository;
+        _subjectRepository = subjectRepository;
     }
 
     public SchoolCreatedDTO CreateSchool(CreateSchoolDTO schoolDto)
@@ -35,7 +38,7 @@ public class AdminService: IAdminService
 
     public SubjectCreatedDTO CreateSubject(CreateSubjectDTO subjectDto)
     {
-        var subjectEntity = _classRepository.CreateSubject(subjectDto.ClassId, _mapper.Map<Subject>(subjectDto));
+        var subjectEntity = _subjectRepository.Create(_mapper.Map<Subject>(subjectDto));
         return _mapper.Map<SubjectCreatedDTO>(subjectEntity);
     }
 
@@ -61,7 +64,7 @@ public class AdminService: IAdminService
     {
         return new GetSubjectsResponseModel()
         {
-            Subjects = _classRepository.GetAllSubjects()
+            Subjects = _subjectRepository.GetAll()
         };
     }
 
