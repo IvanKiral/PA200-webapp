@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using PA200_webapp.DB;
 using PA200_webapp.models.MongoDB;
 
@@ -15,11 +16,17 @@ public class UserRepository: BaseRepository<User>, Interfaces.IUserRepository
 
     public Attends AddUserAttends(string userEmail, Attends attends)
     {
-        var updateDefinition = global::MongoDB.Driver.Builders<User>.Update.Push(u => u.Attends, attends);
-        
-        var filter = global::MongoDB.Driver.Builders<User>.Filter.Eq(u => u.Email, userEmail);
+        var user = Collection.FindSync(u => u.Email == userEmail).First();
 
-        Collection.UpdateOneAsync(filter, updateDefinition);
+        if (user.Attends.Select(a => a.AttendId).Contains(attends.AttendId))
+        {
+            throw new Exception("Given attendance already exists");
+        }
+        var updateDefinition = Builders<User>.Update.Push(u => u.Attends, attends);
+        
+        var filter = Builders<User>.Filter.Eq(u => u.Email, userEmail);
+
+        Collection.UpdateOne(filter, updateDefinition);
         return attends;
     }
 }

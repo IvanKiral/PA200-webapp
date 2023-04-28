@@ -24,13 +24,18 @@ public class ClassRepository: BaseRepository<Class>, Interfaces.IClassRepository
     public WallWithPosts GetWallWithPosts(string classId)
     {
         var filter = Builders<Class>.Filter.Eq(c => c.Id, ObjectId.Parse(classId));
-        var school = Collection.Aggregate().Match(filter).Lookup<Class, Post, Class>(
+        var classEntity = Collection.Aggregate().Match(filter).Lookup<Class, Post, Class>(
             postCollection,
             s => s.Wall.Id,
             p => p.WallId,
             n => n.WallWithPosts.Posts
-        ).First();
+        ).FirstOrDefault();
 
-        return school.WallWithPosts;
+        if (classEntity == null)
+        {
+            throw new Exception("No class with that ID");
+        }
+
+        return classEntity.WallWithPosts;
     }
 }

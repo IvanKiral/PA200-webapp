@@ -28,16 +28,32 @@ public class SubjectService: ISubjectService
 
     public AddTeacherToClassSubjectDTO AddTeacherToSubject(string email, string subjectId, AddTeacherToClassSubjectDTO dto)
     {
+        var searchedClass = _subjectRepository.FilterBy(c => c.Id == ObjectId.Parse(subjectId)).FirstOrDefault();
+
+        if (searchedClass == null)
+        {
+            throw new Exception("There is no such class");
+        }
+        
         var newAttendance = _mapper.Map<Attends>(dto);
         newAttendance.AttendId = ObjectId.Parse(subjectId);
+        newAttendance.Type = AttendType.Subject;
         var attends = _userRepository.AddUserAttends(email, newAttendance);
         return _mapper.Map<AddTeacherToClassSubjectDTO>(attends);
     }
 
     public AddStudentToClassSubjectDTO AddStudentToSubject(string subjectId, AddStudentToClassSubjectDTO dto)
     {
+        var searchedClass = _subjectRepository.FilterBy(c => c.Id == ObjectId.Parse(subjectId)).FirstOrDefault();
+
+        if (searchedClass == null)
+        {
+            throw new Exception("There is no such class");
+        }
+        
         var newAttendance = _mapper.Map<Attends>(dto);
         newAttendance.AttendId = ObjectId.Parse(subjectId);
+        newAttendance.Type = AttendType.Subject;
         var attends = _userRepository.AddUserAttends(dto.UserEmail, newAttendance);
         
         return _mapper.Map<AddStudentToClassSubjectDTO>(attends);

@@ -3,11 +3,17 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace PA200_webapp.models.MongoDB;
 
+public enum AttendType
+{
+    Subject,
+    Class
+}
 public class Attends
 {
     public ObjectId AttendId { get; set; }
     public DateTime From { get; set; }
     public DateTime To { get; set; }
+    public AttendType Type { get; set; }
 }
 
 public class User: BaseDocument
