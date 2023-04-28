@@ -1,4 +1,6 @@
 
+using PA200_webapp.Repository.MongoDB;
+using PA200_webapp.Repository.MongoDB.Interfaces;
 using PA200_webapp.Services;
 using AdminService = PA200_webapp.Services.MongoDB.AdminService;
 using ClassService = PA200_webapp.Services.MongoDB.ClassService;
@@ -31,6 +33,7 @@ public static class ServiceExtensions
     public static void ConfigureRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IClassRepository, ClassRepository>();
     }
 
     public static void ConfigureMapper(this IServiceCollection services)

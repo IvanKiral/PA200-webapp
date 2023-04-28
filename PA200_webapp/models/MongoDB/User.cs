@@ -17,5 +17,5 @@ public class User: BaseDocument
     public string Email { get; set; }
     public string PasswordHash { get; set; }
     public UserRole Role { get; set; }
-    public IEnumerable<Attends> Attends { get; set; }
+    public IEnumerable<Attends> Attends { get; set; } = new List<Attends>();
 }

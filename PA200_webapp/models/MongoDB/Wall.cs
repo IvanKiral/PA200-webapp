@@ -5,5 +5,5 @@ namespace PA200_webapp.models.MongoDB;
 
 public class Wall: BaseDocument
 {
-    public IEnumerable<Post> Posts { get; set; }
+    public IEnumerable<Post> Posts { get; set; } = new List<Post>();
 }
