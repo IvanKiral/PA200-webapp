@@ -10,4 +10,6 @@ public class UserRepository: BaseRepository<User>, Interfaces.IUserRepository
     public UserRepository(IOptions<MongoDBDatabase> databaseSettings) : base( databaseSettings)
     {
     }
+
+    public User GetUserByEmail(string userEmail) =>  FilterBy(u => u.Email == userEmail).First();
 }

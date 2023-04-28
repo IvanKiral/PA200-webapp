@@ -1,5 +1,5 @@
 using AutoMapper;
-using PA200_webapp.models;
+using PA200_webapp.models.MongoDB;
 using PA200_webapp.models.DTO;
 using PA200_webapp.models.RequestModels;
 using PA200_webapp.models.ResponseModels;

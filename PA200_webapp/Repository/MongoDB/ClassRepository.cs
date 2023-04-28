@@ -15,12 +15,12 @@ public class ClassRepository: BaseRepository<Class>, Interfaces.IClassRepository
     public Subject CreateSubject(ObjectId classId, Subject newSubject)
     {
         newSubject.Id = ObjectId.GenerateNewId();
+        
         var updateDefinition = Builders<Class>.Update.Push(c => c.Subjects, newSubject);
         
         var filter = Builders<Class>.Filter.Eq(c => c.Id, classId);
 
         Collection.UpdateOneAsync(filter, updateDefinition);
-
         return newSubject;
     }
 
