@@ -31,7 +31,7 @@ jobs:
       - name: Change Appsetting.json
         uses: microsoft/variable-substitution@v1
         with:
-          files: '${{env.DOTNET_ROOT}}\myapp\appsettings.json'
+          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.json'
         env:
           MongoDBDatabase.ConnectionString: ${{ secrets.COSMOS_CONNECTION_STRING }}
           MongoDBDatabase.DatabaseName: ${{ secrets.COSMOS_DATABASE_NAME }}
