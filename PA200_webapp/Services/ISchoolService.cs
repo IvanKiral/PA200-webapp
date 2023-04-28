@@ -5,7 +5,7 @@ namespace PA200_webapp.Services;
 
 public interface ISchoolService
 {
-    public WallDTO GetSchoolWall(string userEmail);
+    public WallResponseModel GetSchoolWall(string userEmail);
 
     public CreatePostResponseModel CreatePost(string userEmail, CreatePostDTO dto);
     
