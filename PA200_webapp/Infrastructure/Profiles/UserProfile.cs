@@ -1,5 +1,5 @@
 using AutoMapper;
-using PA200_webapp.models;
+using PA200_webapp.models.MongoDB;
 using PA200_webapp.models.DTO;
 using PA200_webapp.models.RequestModels;
 using PA200_webapp.models.ResponseModels;
@@ -15,8 +15,6 @@ public class UserProfile: Profile
             .BeforeMap((source, destination) => destination.PasswordHash = source.Password);
         CreateMap<LoginUserRequest, LoginUserDTO>();
         CreateMap<User, UserProfileResponseModel>();
-        CreateMap<UserClass, UserClassResponse>();
-        CreateMap<UserSubject, UserSubjectResponse>();
         CreateMap<Class, UserProfileClassResponse>();
         CreateMap<Subject, UserProfileSubjectResponse>();
     }

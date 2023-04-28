@@ -89,7 +89,12 @@ public class PostService: IPostService
     public UpdatePostResponseModel UpdatePost(string userEmail, string postId, UpdatePostDTO dto)
     {
         var user = _userRepository.GetUserByEmail(userEmail);
-        var post = _postRepository.FilterBy(p => p.Id == ObjectId.Parse(postId)).First();
+        var post = _postRepository.FilterBy(p => p.Id == ObjectId.Parse(postId)).FirstOrDefault();
+        
+        if (post == null)
+        {
+            throw new Exception("There is no such post");
+        }
 
         if (post.Author.AuthorId != user.Id)
         {

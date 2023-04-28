@@ -1,3 +1,5 @@
+using PA200_webapp.models.MongoDB;
+
 namespace PA200_webapp.models.ResponseModels;
 
 
@@ -34,7 +36,5 @@ public class UserProfileResponseModel
     public string Name { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
-    public IEnumerable<UserClassResponse> UserClasses { get; set; }
-    public IEnumerable<UserSubjectResponse> UserSubjects { get; set; }
-    public int SchoolId { get; set; }
+    public IEnumerable<Attends> Attends { get; set; }
 }

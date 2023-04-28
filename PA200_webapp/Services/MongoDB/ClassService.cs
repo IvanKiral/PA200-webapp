@@ -24,8 +24,16 @@ public class ClassService: IClassService
 
     public AddTeacherToClassSubjectDTO AddTeacherToClass(string email, string classID, AddTeacherToClassSubjectDTO dto)
     {
+        var searchedClass = _classRepository.FilterBy(c => c.Id == ObjectId.Parse(classID)).FirstOrDefault();
+
+        if (searchedClass == null)
+        {
+            throw new Exception("There is no such class");
+        }
+        
         var newAttendance = _mapper.Map<Attends>(dto);
         newAttendance.AttendId = ObjectId.Parse(classID);
+        newAttendance.Type = AttendType.Class;
         var attends = _userRepository.AddUserAttends(email, newAttendance);
         
         return _mapper.Map<AddTeacherToClassSubjectDTO>(attends);
@@ -33,8 +41,15 @@ public class ClassService: IClassService
 
     public AddStudentToClassSubjectDTO AddStudentToClass(string classID, AddStudentToClassSubjectDTO subjectDto)
     {
+        var searchedClass = _classRepository.FilterBy(c => c.Id == ObjectId.Parse(classID)).FirstOrDefault();
+
+        if (searchedClass == null)
+        {
+            throw new Exception("There is no such class");
+        }
         var newAttendance = _mapper.Map<Attends>(subjectDto);
         newAttendance.AttendId = ObjectId.Parse(classID);
+        newAttendance.Type = AttendType.Class;
         var attends = _userRepository.AddUserAttends(subjectDto.UserEmail, newAttendance);
         
         return _mapper.Map<AddStudentToClassSubjectDTO>(attends);
