@@ -8,26 +8,28 @@ namespace PA200_webapp.Repository.MongoDB;
 
 public class SchoolRepository: BaseRepository<School>, Interfaces.ISchoolRepository
 {
+    private IMongoCollection<Post> postCollection;
     public SchoolRepository(IOptions<MongoDBDatabase> databaseSettings) : base(databaseSettings)
     {
+        var db = new MongoClient(databaseSettings.Value.ConnectionString);
+        postCollection = db.GetDatabase(databaseSettings.Value.DatabaseName).GetCollection<Post>(nameof(Post));
     }
-
-
+    
     public Wall GetWall()
     {
         var school = Collection.FindSync(_ => true).ToEnumerable().First();
         return school.Wall;
     }
 
-    public Post CreatePostOnWall(Post newPost)
+    public WallWithPosts GetWallWithPosts()
     {
-        newPost.Id = ObjectId.GenerateNewId();
-        
-        var updateDefinition = Builders<School>.Update.Push(s => s.Wall.Posts, newPost);
+        var school = Collection.Aggregate().Lookup<School, Post, School>(
+            postCollection,
+            s => s.Wall.Id,
+            p => p.WallId,
+            n => n.WallWithPosts.Posts
+        ).First();
 
-        var filter = Builders<School>.Filter.Empty;
-
-        Collection.UpdateOne(filter, updateDefinition);
-        return newPost;
+        return school.WallWithPosts;
     }
 }

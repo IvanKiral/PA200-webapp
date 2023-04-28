@@ -7,4 +7,7 @@ public class Class: BaseDocument
 {
     public string Name { get; set; }
     public Wall Wall { get; set; } = new Wall();
+    
+    [BsonIgnoreIfNull]
+    public WallWithPosts WallWithPosts { get; set; }
 }

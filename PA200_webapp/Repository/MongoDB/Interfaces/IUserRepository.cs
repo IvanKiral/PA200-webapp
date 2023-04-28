@@ -6,4 +6,5 @@ public interface IUserRepository: IBaseRepository<User>
 {
 
     public User GetUserByEmail(string userEmail);
+    public Attends AddUserAttends(string userEmail, Attends attends);
 }

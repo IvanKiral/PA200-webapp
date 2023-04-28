@@ -19,5 +19,7 @@ public class PostProfile: Profile
         CreateMap<UpdatePostRequestModel, UpdatePostDTO>();
         CreateMap<UpdatePostDTO, Post>();
         CreateMap<Post, UpdatePostResponseModel>();
+
+        CreateMap<Comment, CreatePostResponseModel>();
     }
 }

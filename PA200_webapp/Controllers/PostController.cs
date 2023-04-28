@@ -24,8 +24,8 @@ public class PostController: ControllerBase
     }
 
     [HttpPost]
-    [Route("{postId:int}/like")]
-    public ActionResult LikePost(int postId)
+    [Route("{postId}/like")]
+    public ActionResult LikePost(string postId)
     {
         try
         {
@@ -41,8 +41,8 @@ public class PostController: ControllerBase
     }
     
     [HttpDelete]
-    [Route("{postId:int}/like")]
-    public ActionResult DeleteLike(int postId)
+    [Route("{postId}/like")]
+    public ActionResult DeleteLike(string postId)
     {
         try
         {
@@ -58,8 +58,8 @@ public class PostController: ControllerBase
     }
     
     [HttpPost]
-    [Route("{postId:int}/comment")]
-    public ActionResult<CreatePostResponseModel> AddComent(int postId, [FromBody] CreatePostRequestModel model)
+    [Route("{postId}/comment")]
+    public ActionResult<CreatePostResponseModel> AddComent(string postId, [FromBody] CreatePostRequestModel model)
     {
         try
         {
@@ -75,8 +75,8 @@ public class PostController: ControllerBase
     }
     
     [HttpGet]
-    [Route("{postId:int}")]
-    public ActionResult<WallPost> PostDetail(int postId)
+    [Route("{postId}")]
+    public ActionResult<WallPost> PostDetail(string postId)
     {
         try
         {
@@ -89,5 +89,37 @@ public class PostController: ControllerBase
         }
     }
     
+    [HttpPut]
+    [Route("{postId}")]
+    public ActionResult<WallPost> UpdatePost(string postId, [FromBody] UpdatePostRequestModel model)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            var responseModel = _postService.UpdatePost(userEmail, postId, _mapper.Map<UpdatePostDTO>(model));
+            return Ok(responseModel);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
+    }
     
+    [HttpDelete]
+    [Route("{postId}")]
+    public ActionResult<WallPost> DeletePost(string postId)
+    {
+        try
+        {
+            var currentUser = HttpContext.User.Identity as ClaimsIdentity;
+            var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
+            _postService.DeletePost(userEmail, postId);
+            return Ok("Deleted");
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e);
+        }
+    }
 }

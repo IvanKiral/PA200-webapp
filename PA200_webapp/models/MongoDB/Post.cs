@@ -13,9 +13,18 @@ public class Post: BaseDocument
 {
     public string Text { get; set; }
     public bool IsDeleted { get; set; } = false;
-    public PostType Type { get; set; }
     public DateTime Created { get; set; } = DateTime.Now;
     public PostAuthor Author { get; set; }
-    public IEnumerable<Post> Comments { get; set; } = new List<Post>();
+    public ObjectId WallId { get; set; }
+    public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
+    public IEnumerable<ObjectId> Likes { get; set; } = new List<ObjectId>();
+}
+
+public class Comment: BaseDocument
+{
+    public string Text { get; set; }
+    public bool IsDeleted { get; set; } = false;
+    public DateTime Created { get; set; } = DateTime.Now;
+    public PostAuthor Author { get; set; }
     public IEnumerable<ObjectId> Likes { get; set; } = new List<ObjectId>();
 }

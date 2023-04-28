@@ -6,6 +6,5 @@ public interface ISchoolRepository: IBaseRepository<School>
 {
     public Wall GetWall();
 
-    public Post CreatePostOnWall(Post newPost);
-
+    public WallWithPosts GetWallWithPosts();
 }
