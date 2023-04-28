@@ -12,26 +12,31 @@ public class SchoolService: ISchoolService
 {
     private ISchoolRepository _schoolRepository;
     private IUserRepository _userRepository;
+    private IPostRepository _postRepository;
     private IMapper _mapper;
 
-    public SchoolService(IMapper mapper, ISchoolRepository schoolRepository, IUserRepository userRepository)
+    public SchoolService(IMapper mapper, ISchoolRepository schoolRepository, IUserRepository userRepository, IPostRepository postRepository)
     {
         _userRepository = userRepository;
         _mapper = mapper;
         _schoolRepository = schoolRepository;
+        _postRepository = postRepository;
     }
 
     public WallResponseModel GetSchoolWall(string userEmail)
     {
-        return _mapper.Map<WallResponseModel>(_schoolRepository.GetWall());
+        var schoolWall = _schoolRepository.GetWallWithPosts();
+        schoolWall.Posts = schoolWall.Posts.Where(p => !p.IsDeleted);
         
+        return _mapper.Map<WallResponseModel>(schoolWall);
     }
 
     public CreatePostResponseModel CreatePost(string userEmail, CreatePostDTO dto)
     {
         var user = _userRepository.GetUserByEmail(userEmail);
+        var wall = _schoolRepository.GetWall();
         
-        var newPost = _schoolRepository.CreatePostOnWall(new Post()
+        var newPost = _postRepository.Create(new Post()
         {
             Author = new PostAuthor()
             {
@@ -39,7 +44,7 @@ public class SchoolService: ISchoolService
                 Name = user.Name + " " + user.Lastname
             },
             Text = dto.Text,
-            Type = PostType.Post
+            WallId = wall.Id
         });
 
         return _mapper.Map<CreatePostResponseModel>(newPost);

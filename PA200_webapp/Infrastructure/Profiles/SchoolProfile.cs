@@ -9,10 +9,17 @@ public class SchoolProfile: Profile
 {
     public SchoolProfile()
     {
-        CreateMap<Wall, WallDTO>();
-        CreateMap<Wall, WallResponseModel>();
+        CreateMap<WallWithPosts, WallDTO>();
+        CreateMap<WallWithPosts, WallResponseModel>();
         CreateMap<WallDTO, WallResponseModel>();
         CreateMap<Post, WallPost>()
+            .BeforeMap((source, destination) =>
+            {
+                destination.AuthorName = source.Author.Name;
+                destination.LikeCount = source.Likes.Count();
+            });;
+        
+        CreateMap<Comment, WallComment>()
             .BeforeMap((source, destination) =>
             {
                 destination.AuthorName = source.Author.Name;

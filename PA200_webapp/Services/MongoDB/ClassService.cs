@@ -1,37 +1,101 @@
+using AutoMapper;
+using MongoDB.Bson;
 using PA200_webapp.models.DTO;
+using PA200_webapp.models.MongoDB;
 using PA200_webapp.models.ResponseModels;
+using PA200_webapp.Repository.MongoDB.Interfaces;
 
 namespace PA200_webapp.Services.MongoDB;
 
 public class ClassService: IClassService
 {
-    public AddTeacherToClassSubjectDTO AddTeacherToClass(string email, int classID, AddTeacherToClassSubjectDTO dto)
+    private IMapper _mapper;
+    private IUserRepository _userRepository;
+    private IClassRepository _classRepository;
+    private IPostRepository _postRepository;
+
+    public ClassService(IMapper mapper, IUserRepository userRepository, IClassRepository classRepository, IPostRepository postRepository)
     {
-        throw new NotImplementedException();
+        _mapper = mapper;
+        _userRepository = userRepository;
+        _classRepository = classRepository;
+        _postRepository = postRepository;
     }
 
-    public AddStudentToClassSubjectDTO AddStudentToClass(int classID, AddStudentToClassSubjectDTO subjectDto)
+    public AddTeacherToClassSubjectDTO AddTeacherToClass(string email, string classID, AddTeacherToClassSubjectDTO dto)
     {
-        throw new NotImplementedException();
+        var newAttendance = _mapper.Map<Attends>(dto);
+        newAttendance.AttendId = ObjectId.Parse(classID);
+        var attends = _userRepository.AddUserAttends(email, newAttendance);
+        
+        return _mapper.Map<AddTeacherToClassSubjectDTO>(attends);
     }
 
-    public WallDTO GetClassWall(string userEmail, int id)
+    public AddStudentToClassSubjectDTO AddStudentToClass(string classID, AddStudentToClassSubjectDTO subjectDto)
     {
-        throw new NotImplementedException();
+        var newAttendance = _mapper.Map<Attends>(subjectDto);
+        newAttendance.AttendId = ObjectId.Parse(classID);
+        var attends = _userRepository.AddUserAttends(subjectDto.UserEmail, newAttendance);
+        
+        return _mapper.Map<AddStudentToClassSubjectDTO>(attends);
     }
 
-    public CreatePostResponseModel CreatePost(string userEmail, int classId, CreatePostDTO dto)
+    public WallResponseModel GetClassWall(string userEmail, string classId)
     {
-        throw new NotImplementedException();
+        var user = _userRepository.GetUserByEmail(userEmail);
+        var classAttendance = user.Attends.FirstOrDefault(a => a.AttendId == ObjectId.Parse(classId));
+        
+        if (classAttendance == null)
+        {
+            throw new Exception("The user is not attendant of the given class");
+        }
+        
+        var time = DateTime.Now;
+
+        if (time < classAttendance.From || time > classAttendance.To) 
+        {
+            throw new Exception("The user is not attendant of the given class anymore");
+        }
+        
+        var classWall =  _classRepository.GetWallWithPosts(classId);
+
+        classWall.Posts =
+            classWall.Posts.Where(p => p.Created >= classAttendance.From && p.Created <= classAttendance.To && !p.IsDeleted);
+
+        return _mapper.Map<WallResponseModel>(classWall);
     }
 
-    public void DeletePost(string userEmail, int classId, int post)
+    public CreatePostResponseModel CreatePost(string userEmail, string classId, CreatePostDTO dto)
     {
-        throw new NotImplementedException();
-    }
+        var user = _userRepository.GetUserByEmail(userEmail);
+        
+        var classAttendance = user.Attends.FirstOrDefault(a => a.AttendId == ObjectId.Parse(classId));
+        
+        if (classAttendance == null)
+        {
+            throw new Exception("The user is not attendant of the given class");
+        }
+        
+        var time = DateTime.Now;
 
-    public UpdatePostResponseModel UpdatePost(string userEmail, int postId, UpdatePostDTO dto)
-    {
-        throw new NotImplementedException();
+        if (time < classAttendance.From || time > classAttendance.To) 
+        {
+            throw new Exception("The user is not attendant of the given class anymore");
+        }
+        
+        var classWall = _classRepository.GetWall(classId);
+        
+        var newPost = _postRepository.Create(new Post()
+        {
+            Author = new PostAuthor()
+            {
+                AuthorId = user.Id,
+                Name = user.Name + " " + user.Lastname
+            },
+            WallId = classWall.Id,
+            Text = dto.Text
+        });
+        
+        return _mapper.Map<CreatePostResponseModel>(newPost);
     }
 }

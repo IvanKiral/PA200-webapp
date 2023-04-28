@@ -5,14 +5,10 @@ namespace PA200_webapp.Services;
 
 public interface ISubjectService
 {
-    public AddTeacherToClassSubjectDTO AddTeacherToSubject(string email, int subjectId, AddTeacherToClassSubjectDTO dto);
-    public AddStudentToClassSubjectDTO AddStudentToSubject(int subjectId, AddStudentToClassSubjectDTO dto);
+    public AddTeacherToClassSubjectDTO AddTeacherToSubject(string email, string subjectId, AddTeacherToClassSubjectDTO dto);
+    public AddStudentToClassSubjectDTO AddStudentToSubject(string subjectId, AddStudentToClassSubjectDTO dto);
     
-    public WallDTO GetSubjectWall(string userEmail, int id);
+    public WallResponseModel GetSubjectWall(string userEmail, string id);
 
-    public CreatePostResponseModel CreatePost(string userEmail, int subjectId, CreatePostDTO dto);
-
-    public void DeletePost(string userEmail, int subjectId, int post);
-
-    public UpdatePostResponseModel UpdatePost(string userEmail, int postId, UpdatePostDTO dto);
+    public CreatePostResponseModel CreatePost(string userEmail, string subjectId, CreatePostDTO dto);
 }

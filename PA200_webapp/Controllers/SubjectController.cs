@@ -16,17 +16,19 @@ public class SubjectController: ControllerBase
 {
     private IMapper _mapper;
     private ISubjectService _subjectService;
+    private IPostService _postService;
 
-    public SubjectController(IMapper mapper, ISubjectService subjectService)
+    public SubjectController(IMapper mapper, ISubjectService subjectService, IPostService postService)
     {
         _mapper = mapper;
         _subjectService = subjectService;
+        _postService = postService;
     }
     
     [HttpPost]
     [Authorize(Roles = "Teacher")]
-    [Route("{id:int}/teacher")]
-    public ActionResult<AddStudentToClassSubjectDTO> AddTeacherToClass(int id, [FromBody] AddTeacherToClassRequestModel model)
+    [Route("{id}/teacher")]
+    public ActionResult<AddStudentToClassSubjectDTO> AddTeacherToSubject(string id, [FromBody] AddTeacherToClassRequestModel model)
     {
         try
         {
@@ -44,8 +46,8 @@ public class SubjectController: ControllerBase
     
     [HttpPost]
     [Authorize(Roles = "Teacher")]
-    [Route("{id:int}/student")]
-    public ActionResult<AddStudentToClassSubjectDTO> AddStudentToClass(int id, [FromBody] AddStudentToClassRequestModel model)
+    [Route("{id}/student")]
+    public ActionResult<AddStudentToClassSubjectDTO> AddStudentToSubject(string id, [FromBody] AddStudentToClassRequestModel model)
     {
         try
         {
@@ -60,8 +62,8 @@ public class SubjectController: ControllerBase
     }
     
     [HttpGet]
-    [Route("{id:int}/wall")]
-    public ActionResult<WallResponseModel> GetClassWall(int id)
+    [Route("{id}/wall")]
+    public ActionResult<WallResponseModel> GetSubjectWall(string id)
     {
         try
         {
@@ -78,8 +80,8 @@ public class SubjectController: ControllerBase
     
     [HttpPost]
     [Authorize]
-    [Route("{id:int}/wall/post")]
-    public ActionResult<CreatePostResponseModel> AddPostToWall(int id, [FromBody] CreatePostRequestModel model)
+    [Route("{id}/wall/post")]
+    public ActionResult<CreatePostResponseModel> AddPostToWall(string id, [FromBody] CreatePostRequestModel model)
     {
         try
         {
@@ -96,14 +98,14 @@ public class SubjectController: ControllerBase
     
     [HttpDelete]
     [Authorize]
-    [Route("{subjectId:int}/wall/post/{postId:int}")]
-    public ActionResult<string> DeletePostFromWall(int subjectId, int postId)
+    [Route("{subjectId}/wall/post/{postId}")]
+    public ActionResult<string> DeletePostFromWall(string subjectId, string postId)
     {
         try
         {
             var currentUser = HttpContext.User.Identity as ClaimsIdentity;
             var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            _subjectService.DeletePost(userEmail, subjectId, postId);
+            _postService.DeletePost(userEmail, postId);
             return Ok("Deleted");
         }
         catch (Exception e)
@@ -115,14 +117,14 @@ public class SubjectController: ControllerBase
     
     [HttpPut]
     [Authorize]
-    [Route("{subjectId:int}/wall/post/{postId:int}")]
-    public ActionResult<UpdatePostResponseModel> UpdatePostWall(int subjectId, int postId, [FromBody] UpdatePostRequestModel model)
+    [Route("{subjectId}/wall/post/{postId}")]
+    public ActionResult<UpdatePostResponseModel> UpdatePostWall(string subjectId, string postId, [FromBody] UpdatePostRequestModel model)
     {
         try
         {
             var currentUser = HttpContext.User.Identity as ClaimsIdentity;
             var userEmail = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email).Value;
-            var responseModel = _subjectService.UpdatePost(userEmail, postId, _mapper.Map<UpdatePostDTO>(model));
+            var responseModel = _postService.UpdatePost(userEmail, postId, _mapper.Map<UpdatePostDTO>(model));
             return Ok(responseModel);
         }
         catch (Exception e)
