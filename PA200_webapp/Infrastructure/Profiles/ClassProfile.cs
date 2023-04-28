@@ -18,11 +18,5 @@ public class ClassProfile: Profile
 
         CreateMap<AddStudentToClassSubjectDTO, Attends>();
         CreateMap<Attends, AddStudentToClassSubjectDTO>();
-        
-        CreateMap<AddTeacherToClassSubjectDTO, UserSubject>();
-        CreateMap<UserSubject, AddTeacherToClassSubjectDTO>();
-        
-        CreateMap<AddStudentToClassSubjectDTO, UserSubject>();
-        CreateMap<UserSubject, AddStudentToClassSubjectDTO>();
     }
 }

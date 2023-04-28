@@ -8,6 +8,13 @@ public enum AttendType
     Subject,
     Class
 }
+
+public enum UserRole
+{
+    Admin,
+    Student,
+    Teacher
+}
 public class Attends
 {
     public ObjectId AttendId { get; set; }

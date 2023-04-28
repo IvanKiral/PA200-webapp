@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using PA200_webapp.Infrastructure;
 using PA200_webapp.models;
+using PA200_webapp.models.MongoDB;
 using PA200_webapp.Utils;
 using Class = PA200_webapp.models.MongoDB.Class;
 using School = PA200_webapp.models.MongoDB.School;
