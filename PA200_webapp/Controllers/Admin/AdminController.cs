@@ -6,6 +6,7 @@ using PA200_webapp.models.DTO;
 using PA200_webapp.models.RequestModels;
 using PA200_webapp.models.ResponseModels;
 using PA200_webapp.Services;
+using PA200_webapp.Services.MongoDB;
 
 namespace PA200_webapp.Controllers.Admin;
 
@@ -15,17 +16,14 @@ namespace PA200_webapp.Controllers.Admin;
 [Route("admin")]
 public class AdminController: ControllerBase
 {
-    private IUserService _userService;
     private IMapper _mapper;
     private IAdminService _adminService;
     
     public AdminController(
-        IMapper mapper, 
-        IUserService userService,
+        IMapper mapper,
         IAdminService adminService
     )
     {
-        _userService = userService;
         _mapper = mapper;
         _adminService = adminService;
     }
@@ -37,7 +35,7 @@ public class AdminController: ControllerBase
     {
         try
         {
-            var response = _userService.createUser(_mapper.Map<CreateUserDTO>(model));
+            var response = _adminService.createUser(_mapper.Map<CreateUserDTO>(model));
             return Ok(response);
         }
         catch(Exception e)

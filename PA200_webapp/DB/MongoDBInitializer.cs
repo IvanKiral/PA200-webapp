@@ -13,11 +13,20 @@ public class MongoDBInitializer
         var mongoDB = new MongoClient(mongoDbDatabase.ConnectionString);
         var database = mongoDB.GetDatabase(mongoDbDatabase.DatabaseName);
         var userCollection = database.GetCollection<User>("User");
+        var classCollection = database.GetCollection<Class>("Class");
 
         if (userCollection.FindSync(_ => true).Any())
         {
             return;
         }
+        
+        var options = new CreateIndexOptions { Unique = true };
+        var userModel = new CreateIndexModel<User>("{Email: 1}", options);
+        var classModel = new CreateIndexModel<Class>("{Name: 1}", options);
+        var subjectModel = new CreateIndexModel<Class>("{\"Subjects.Name\": 1}", options);
+        userCollection.Indexes.CreateOne(userModel);
+        classCollection.Indexes.CreateOne(classModel);
+        classCollection.Indexes.CreateOne(subjectModel);
         
         var admin = new User()
         {
@@ -29,6 +38,6 @@ public class MongoDBInitializer
         };
         
         userCollection.InsertOne(admin);
-        
+
     }
 }

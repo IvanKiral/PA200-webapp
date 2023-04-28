@@ -10,6 +10,6 @@ public class Post: BaseDocument
     public PostType Type { get; set; }
     public DateTime Created { get; set; }
     public ObjectId AuthorId { get; set; }
-    public IEnumerable<Post> Comments { get; set; }
-    public IEnumerable<ObjectId> Likes { get; set; }
+    public IEnumerable<Post> Comments { get; set; } = new List<Post>();
+    public IEnumerable<ObjectId> Likes { get; set; } = new List<ObjectId>();
 }

@@ -13,5 +13,7 @@ public interface IAdminService
     public GetUsersResponseModel GetUsers();
     public GetClassesResponseModel GetClasses();
     public GetSubjectsResponseModel GetSubjects();
+    
+    public CreateUserResponseModel createUser(CreateUserDTO model);
 
 }
