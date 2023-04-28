@@ -1,6 +1,6 @@
-namespace PA200_webapp.Infrastructure;
+namespace PA200_webapp.DB;
 
-public class MongoDBDatabase
+public class MongoDBDatabase: IMongoDatabase
 {
     public string ConnectionString { get; set; } = null!;
 

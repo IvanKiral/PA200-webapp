@@ -42,7 +42,8 @@ public class AdminService: IAdminService
 
     public GetUsersResponseModel GetUsers()
     {
-        return new GetUsersResponseModel() { Users = _unitOfWork.UserRepository.FindAll() };
+        throw new NotImplementedException();
+        // return new GetUsersResponseModel() { Users = _unitOfWork.UserRepository.FindAll() };
     }
 
     public GetClassesResponseModel GetClasses()

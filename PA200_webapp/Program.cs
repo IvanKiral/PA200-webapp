@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDBDatabase>(
     builder.Configuration.GetSection("MongoDBDatabase"));
 
-builder.Services.ConfigureUnitOfWork();
+builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
 builder.Services.ConfigureMapper();
 builder.Services.AddScoped<IAuthService, JWTService>();
@@ -28,21 +28,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
-// using (var scope = app.Services.CreateScope())
-// {
-//     var services = scope.ServiceProvider;
-//
-//     var context = services.GetRequiredService<SocialNetworkContext>();
-//     context.Database.EnsureCreated();
-//     DbInitializer.Initialize(context);
-// }
+var x = builder.Configuration.GetSection("MongoDBDatabase").Get<MongoDBDatabase>();
+MongoDBInitializer.Initliaze(x);
 
 
-app.UseSwagger();
-app.UseSwaggerUI();
+// app.UseSwagger();
+// app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

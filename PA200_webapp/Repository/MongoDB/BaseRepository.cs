@@ -1,6 +1,9 @@
 using System.Linq.Expressions;
+using AutoMapper;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using PA200_webapp.DB;
 using PA200_webapp.models.MongoDB;
 
 namespace PA200_webapp.Repository.MongoDB;
@@ -8,7 +11,12 @@ namespace PA200_webapp.Repository.MongoDB;
 public abstract class BaseRepository<T>: Interfaces.IBaseRepository<T> where T: BaseDocument
 {
     public IMongoCollection<T> Collection { get; set; }
-
+    protected BaseRepository(IOptions<MongoDBDatabase> databaseSettings)
+    {
+        var database = new MongoClient(databaseSettings.Value.ConnectionString).GetDatabase(databaseSettings.Value.DatabaseName);
+        Collection = database.GetCollection<T>(typeof(T).Name);
+    }
+    
     public IEnumerable<T> GetAll() =>
         Collection.Find(_ => true).ToEnumerable();
 
